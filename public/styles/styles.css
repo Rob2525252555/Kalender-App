@@ -1,5 +1,48 @@
+:root {
+  /* ===================================
+     Header
+  =================================== */
+  --color-header: rgba(0, 0, 255, 1);              /* Blau für Header-Hintergrund */
+  --color-header-font: rgba(255, 255, 255, 1);     /* Weiß für Header-Text */
 
-/* Body */
+  /* Navigation Buttons */
+  --color-bg-navigationButtons: rgba(128, 128, 128, 1);        /* Grau für Buttons */
+  --color-bg-navigationButtons-hover: rgba(66, 66, 66, 1);     /* Dunkleres Grau beim Hover */
+  --color-navigationButtons: rgba(255, 255, 255, 1);           /* Weiß für Button-Text */
+
+  /* ===================================
+     Kalender-Grid
+  =================================== */
+  --color-bg-calendarGrid: rgba(218, 218, 218, 1);           /* Hellgrauer Hintergrund für Grid */
+  --color-bg-calendarRows: rgba(85, 85, 160, 0.36);          /* Leicht transparentes Blau für Reihen */
+  --color-bg-calendarCells: rgba(255, 255, 0, 1);            /* Gelb für Zellen */
+  --color-border-currentDay: rgba(255, 0, 0, 1);             /* Rot für aktuellen Tag */
+
+  /* ===================================
+     Tasks
+  =================================== */
+  --color-bg-tasks: rgba(255, 243, 176, 1);                 /* Hellgelb für Tasks */
+  --color-bg-tasks-hover: rgba(248, 216, 75, 1);            /* Intensiveres Gelb beim Hover */
+  --color-boxShadow-tasks: rgba(0, 0, 0, 0.1);              /* Schatten für Tasks */
+  --color-boxShadow-tasks-hover: rgba(0, 0, 0, 0.2);        /* Hover-Schatten für Tasks */
+  --color-taskEmployee-font: rgba(85, 85, 85, 1);           /* Dunkelgrau für Mitarbeitertext */
+
+  /* ===================================
+     Neue Task
+  =================================== */
+  --color-bg-newTask: rgba(231, 195, 77, 0.5);              /* Hellgrünlich transparent für neuen Task Container */
+  --color-bg-newTask-hover: rgba(150, 255, 150, 0.8);       /* Intensiveres Grün beim Hover */
+  --color-newTaskButton-font: rgba(0, 128, 0, 1);           /* Grün für +Neue Aufgabe Button */
+
+  /* ===================================
+     Footer
+  =================================== */
+  --color-footer: rgba(85, 85, 85, 1);                      /* Dunkelgrau für Footer-Hintergrund */
+  --color-footer-font: rgba(255, 255, 255, 1);              /* Weiß für Footer-Text */
+}
+
+
+/*body*/
 body {
     margin: 0;
 }
@@ -12,16 +55,18 @@ main {
     height: 100dvh;         /* Fallback für mobile Geräte*/
 }
 
-/*------------------- Header -------------------*/
+/* ===================================
+   Header
+=================================== */
 header {
     height: 100px;
-    background-color: blue;
+    background-color: var(--color-header);
     display: flex;
     align-items: center;
-    justify-content: center;
-    
+    justify-content: center;   
 }
 
+/* Container in dem sich Container für Jahr/Monat und Buttons befinden*/
 .headerContainer {
     display: flex;
     justify-content: space-between;
@@ -30,15 +75,15 @@ header {
     max-width: 800px;
     height: 35px;
     margin-left: 50px;
-    margin-right: 50px;
-    
+    margin-right: 50px;   
 }
 
+/* Container für Jahr/Monat und Buttons */
 .innerHeaderContainer {
     display: flex;
     align-items: center;
     height: 100%;
-    color: rgb(255, 255, 255);
+    color: var(--color-header-font);
     font-size: 25px;
     font-weight: bold;
 }
@@ -49,8 +94,8 @@ header {
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    background-color: grey;
-    color: white;
+    background-color: var(--color-bg-navigationButtons);
+    color: var(--color-navigationButtons);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,26 +104,28 @@ header {
 }
 
 .prevMonth:hover, .nextMonth:hover {
-    background-color: rgb(66, 66, 66);
+    background-color: var(--color-bg-navigationButtons-hover);
     transform: scale(1.1);
 }
-/* ------------------- Content -------------------*/
-/* Body-Container nimmt den restlichen Platz ein */
+
+/* ===================================
+   Kalender-Grid
+=================================== */
 .bodyMainContainer {
     flex: 1 1 auto;          /* nimmt den restlichen Platz ein */
     overflow-y: auto;        /* Scrollbar bei Bedarf */
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background-color: rgb(218, 218, 218);
+    background-color: var(--color-bg-calendarGrid);
     gap: 10px;
 }
 
-/*------------------- Wochentage-Zeilen -------------------*/
+/*------------------- Wochentage-Zeile -------------------*/
 .weekdaysRowContainer {
     display: flex;
     justify-content: space-between;
-    background-color: rgba(85, 85, 160, 0.356);
+    background-color: var(--color-bg-calendarRows);
 }
 
 /* Wochentage */
@@ -87,7 +134,7 @@ header {
     display: flex;
     justify-content: center;
     margin: 2px;
-    background-color: yellow;
+    background-color: var(--color-bg-calendarCells);
 
 }
 
@@ -97,20 +144,19 @@ header {
     font-weight: bold;
 }
 
-
 /*------------------- Kalender-Zeilen und Zellen -------------------*/
 .bodyRowContainer {
-    flex: 1;
+    flex: 1; 
     display: flex;
     justify-content: space-between;
-    background-color: rgba(85, 85, 160, 0.356);
+    background-color: var(--color-bg-calendarRows);
 }
 
 /* Kalender-Zellen */
 .bodyCellsContainer {
     flex: 1; /* alle Zellen gleich breit */
     margin: 2px;
-    background-color: yellow;
+    background-color: var(--color-bg-calendarCells);
 
     border-radius: 6px;
     padding: 4px;
@@ -120,30 +166,33 @@ header {
 
     min-width: 0; /*Kalender behält dadurch seine Form, wenn man Fenster verkleinert*/
 }
-
+/* Aktuellen Tag markieren */
     .currentDay {
-    box-shadow: 0 0 0 3px #ff0000;
+    box-shadow: 0 0 0 3px var(--color-border-currentDay);
 }
 
+/* ===================================
+   Tasks
+=================================== */
 
-/* -------------------- Tasks -------------------*/
-/* Jede Aufgabe */
+/* Container für jede Task */
 .task {
-    background-color: #fff3b0; /* hellgelb für Aufgabe */
+    background-color: var(--color-bg-tasks); 
     padding: 4px 6px;
     border-radius: 4px;
     display: flex;
     flex-direction: column; /* Titel oben, Mitarbeiter unten */
     gap: 4px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px var(--color-boxShadow-tasks);
 }
 
 .task:hover{
-    background-color: rgb(248, 216, 75);
+    background-color: var(--color-bg-tasks-hover);
     transform: translateY(-4px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2); 
+    box-shadow: 0 8px 15px var(--color-boxShadow-tasks-hover); 
 }
 
+/* Für Task-Title und Buttons (Details, Bearbeiten, Löschen) */
 .taskHeader {
     display: flex;
     justify-content: space-between; /* Titel links, Buttons rechts */
@@ -163,22 +212,21 @@ header {
     overflow-wrap: break-word; /* Wortumbruch erlauben */
     word-break: break-word;     /* bei extrem langen Wörtern */
     flex: 1;
-    flex-shrink: 1;             /* Container darf schrumpfen */
-    
+    flex-shrink: 1;             /* Container darf schrumpfen */  
 }
 
 .taskEmployee{
-    color: #555;
+    color: var(--color-taskEmployee-font);
     overflow-wrap: break-word;
 }
 
-/*------------------- Neue Aufgabe hinzufügen------------------*/
+/*------------------- Neue Task hinzufügen------------------*/
 
-/* Neue Aufgabe Button */
+/* Neue Task hinzufügen Container */
 .newTask {
-    background-color: rgba(231, 195, 77, 0.5); /* grünlich, leicht transparent */
+    background-color: var(--color-bg-newTask); 
     display: flex;
-    justify-content: center; /* Button zentrieren */
+    justify-content: center; 
     align-items: center;
     padding: 2px;
     border-radius: 4px;
@@ -187,25 +235,25 @@ header {
 }
 
 .newTask:hover {
-    background-color: rgba(150, 255, 150, 0.8);
+    background-color: var(--color-bg-newTask-hover);
 }
 
 .addTaskButton {
     background: none;
     border: none;
-    color: green;
+    color: var(--color-newTaskButton-font);
     font-weight: bold;
     cursor: pointer;
     font-size: 14px;
 }
 
 
-
-
-/*------------------- Footer -------------------*/
+/* ===================================
+   Footer
+=================================== */
 footer {
     height: 50px;
-    background-color: grey;
+    background-color: var(--color-footer);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -218,7 +266,7 @@ footer {
     max-width: 400px;
     justify-content: space-between;
     align-items: center;
-    color: white;
+    color: var(--color-footer-font);
     margin-left: 50px;
     margin-right: 50px;
 }
