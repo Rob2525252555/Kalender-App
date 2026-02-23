@@ -80,9 +80,12 @@ header {
 
 /* Container für Jahr/Monat und Buttons */
 .innerHeaderContainer {
-    display: flex;
-    align-items: center;
     height: 100%;
+}
+
+.currentMonthAndYear{
+    display: flex;
+    align-items: center;  
     color: var(--color-header-font);
     font-size: 25px;
     font-weight: bold;
@@ -111,7 +114,7 @@ header {
 /* ===================================
    Kalender-Grid
 =================================== */
-.bodyMainContainer {
+.calendarMainContainer {
     flex: 1 1 auto;          /* nimmt den restlichen Platz ein */
     overflow-y: auto;        /* Scrollbar bei Bedarf */
     display: flex;
@@ -145,7 +148,7 @@ header {
 }
 
 /*------------------- Kalender-Zeilen und Zellen -------------------*/
-.bodyRowContainer {
+.calendarRowContainer {
     flex: 1; 
     display: flex;
     justify-content: space-between;
@@ -153,7 +156,7 @@ header {
 }
 
 /* Kalender-Zellen */
-.bodyCellsContainer {
+.calendarCellsContainer {
     flex: 1; /* alle Zellen gleich breit */
     margin: 2px;
     background-color: var(--color-bg-calendarCells);
@@ -210,7 +213,7 @@ header {
     font-weight: bold;
     font-size: 14px;
     overflow-wrap: break-word; /* Wortumbruch erlauben */
-    word-break: break-word;     /* bei extrem langen Wörtern */
+    word-break: normal;     /* bei extrem langen Wörtern */
     flex: 1;
     flex-shrink: 1;             /* Container darf schrumpfen */  
 }
