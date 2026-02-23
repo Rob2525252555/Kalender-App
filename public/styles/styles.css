@@ -1,0 +1,233 @@
+
+/* Body */
+body {
+    margin: 0;
+}
+
+/* Main als Flex-Container */
+main {
+    display: flex;
+    flex-direction: column; /* Header oben, Footer unten, Body dazwischen */
+    height: 100vh;          /* Main füllt den gesamten Viewport */
+    height: 100dvh;         /* Fallback für mobile Geräte*/
+}
+
+/*------------------- Header -------------------*/
+header {
+    height: 100px;
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    height: 35px;
+    background-color: chocolate;
+    margin-left: 50px;
+    margin-right: 50px;
+    
+}
+
+.innerHeaderContainer {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    background-color: blueviolet;
+    color: aliceblue;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/*--------------------- Header-Buttons ------------------*/
+.prevMonth, .nextMonth {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #6b5b95;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.prevMonth:hover, .nextMonth:hover {
+    background-color: #836fa9;
+    transform: scale(1.1);
+}
+/* ------------------- Content -------------------*/
+/* Body-Container nimmt den restlichen Platz ein */
+.bodyMainContainer {
+    flex: 1 1 auto;          /* nimmt den restlichen Platz ein */
+    overflow-y: auto;        /* Scrollbar bei Bedarf */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: rgba(96, 96, 156, 0.356);
+    gap: 10px;
+}
+
+/*------------------- Wochentage-Zeilen -------------------*/
+.weekdaysRowContainer {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(85, 85, 160, 0.356);
+}
+
+/* Wochentage */
+.weekdaysCellsContainer{
+    flex: 1; /* alle Zellen gleich breit */
+    display: flex;
+    justify-content: center;
+    margin: 2px;
+    background-color: yellow;
+
+}
+
+/* Wochentag Text*/
+.weekdayText{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/*------------------- Kalender-Zeilen und Zellen -------------------*/
+.bodyRowContainer {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(85, 85, 160, 0.356);
+}
+
+/* Kalender-Zellen */
+.bodyCellsContainer {
+    flex: 1; /* alle Zellen gleich breit */
+    margin: 2px;
+    background-color: yellow;
+
+    border-radius: 6px;
+    padding: 4px;
+    display: flex;
+    flex-direction: column; /* Aufgaben untereinander */
+    gap: 4px; /* Abstand zwischen Aufgaben */
+
+    min-width: 0; /*Kalender behält dadurch seine Form, wenn man Fenster verkleinert*/
+}
+
+    .currentDay {
+    box-shadow: 0 0 0 3px #ff0000;
+}
+
+
+/* -------------------- Tasks -------------------*/
+/* Jede Aufgabe */
+.task {
+    background-color: #fff3b0; /* hellgelb für Aufgabe */
+    padding: 4px 6px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column; /* Titel oben, Mitarbeiter unten */
+    gap: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.task:hover{
+    background-color: rgb(248, 216, 75);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2); 
+}
+
+.taskHeader {
+    display: flex;
+    justify-content: space-between; /* Titel links, Buttons rechts */
+    align-items: flex-start;
+}
+
+.taskButtons button {
+    margin-left: 4px; /* Abstand zwischen Buttons */
+    padding: 2px 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.taskTitle{
+    font-weight: bold;
+    font-size: 14px;
+    overflow-wrap: break-word; /* Wortumbruch erlauben */
+    word-break: break-word;     /* bei extrem langen Wörtern */
+    flex: 1;
+    flex-shrink: 1;             /* Container darf schrumpfen */
+    
+}
+
+.taskEmployee{
+    color: #555;
+    overflow-wrap: break-word;
+}
+
+/*------------------- Neue Aufgabe hinzufügen------------------*/
+
+/* Neue Aufgabe Button */
+.newTask {
+    background-color: rgba(231, 195, 77, 0.5); /* grünlich, leicht transparent */
+    display: flex;
+    justify-content: center; /* Button zentrieren */
+    align-items: center;
+    padding: 2px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.newTask:hover {
+    background-color: rgba(150, 255, 150, 0.8);
+}
+
+.addTaskButton {
+    background: none;
+    border: none;
+    color: green;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+
+
+/*------------------- Footer -------------------*/
+footer {
+    height: 50px;
+    background-color: chartreuse;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Footer-Zeile */
+.footerContainer {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(163, 113, 211);
+    color: white;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+/* Footer-Zellen*/
+.innerFooterContainer {
+    background-color: blueviolet;
+    padding: 0 10px;
+}
