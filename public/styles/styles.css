@@ -191,8 +191,7 @@ header {
 
 .task:hover{
     background-color: var(--color-bg-tasks-hover);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 15px var(--color-boxShadow-tasks-hover); 
+    box-shadow: 0 3px 6px var(--color-boxShadow-tasks-hover); 
 }
 
 /* Für Task-Title und Buttons (Details, Bearbeiten, Löschen) */
@@ -234,7 +233,6 @@ header {
     padding: 2px;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.2s;
 }
 
 .newTask:hover {
