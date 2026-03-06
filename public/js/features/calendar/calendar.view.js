@@ -28,6 +28,9 @@ const renderCalendar = {
         const NUMBER_OF_WEEKDAYS = 7;
         const NUMBER_OF_ROWS = 6;
 
+         // Text der Footerlinks
+        const footerTexts = ['Impressum', 'Kontakt', 'Datenschutz'];
+
         // Zähler für Kalender-Zellen
         let counter = 0;
 
@@ -191,11 +194,10 @@ const renderCalendar = {
             parent: footer
         })
 
-        // Text der Footerlinks
-        const footerTexts = ['Impressum', 'Kontakt', 'Datenschutz'];
+       
 
         /**Erzeugen der Footerlinks */
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < footerTexts.length; i++) {
 
             const innerFooterContainer = dom.create({
             tagName: 'div',
