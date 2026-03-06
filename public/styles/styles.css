@@ -176,6 +176,10 @@ header {
 
     min-width: 0; /*Kalender behält dadurch seine Form, wenn man Fenster verkleinert*/
 }
+
+.dayNumbers{
+    font-weight: bold;
+}
 /* Aktuellen Tag markieren */
     .currentDay {
     box-shadow: 0 0 0 3px var(--color-border-currentDay);
