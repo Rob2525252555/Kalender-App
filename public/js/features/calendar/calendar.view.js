@@ -1,5 +1,6 @@
 import dom from "../../core/dom.js";
 import elements from "../../core/elements.js"
+import dates from "../../utils/dates.js";
 
 /**
  * @module calendar.view
@@ -26,13 +27,19 @@ const renderCalendar = {
          */
 
         const NUMBER_OF_WEEKDAYS = 7;
+
+        // Text für die Wochentage aus dates.js 
+        // Array wird umstrukturiert, damit es mit Monatg beginnt, statt Sonntag
+        const WEEKDAYSTEXT = [...dates.days.slice(1), dates.days[0]];
+
         const NUMBER_OF_ROWS = 6;
 
          // Text der Footerlinks
         const footerTexts = ['Impressum', 'Kontakt', 'Datenschutz'];
 
+        
         // Zähler für Kalender-Zellen
-        let counter = 0;
+        let counter = 1;
 
         // ----------------------------------------
         // Hauptcontainer
@@ -76,7 +83,7 @@ const renderCalendar = {
             tagName: 'div',
             id: 'innerHeaderContainer',
             classList: ['innerHeaderContainer', 'currentMonthAndYear'],
-            innerText: 'März 2026',
+            innerText: 'month year',
             parent: headerContainer
         })
 
@@ -125,7 +132,7 @@ const renderCalendar = {
                 tagName:'div',
                 id:`weekdayText${i}`,
                 classList: ['weekdayText'],
-                innerText: 'Wochentag',
+                innerText: WEEKDAYSTEXT[i],
                 parent: weekdayCellsContainer
             })
         }
@@ -148,9 +155,6 @@ const renderCalendar = {
             // 7 Zellen pro Reihe
             for (let j = 0; j < NUMBER_OF_WEEKDAYS; j++) {
                 
-                // Zähler für Kalenderzellen
-                counter++;
-                
                 /** Einzelne Kalenderzelle */
                 const calendarCells = dom.create({
                     tagName: 'div',
@@ -163,7 +167,6 @@ const renderCalendar = {
                 const dayNumberContainer = dom.create({
                     tagName: 'div',
                     id: `dayNumbers${counter}`,
-                    innerText: counter,
                     classList: ['dayNumbers'],
                     parent: calendarCells
                 })
@@ -172,7 +175,8 @@ const renderCalendar = {
                 elements.calendarCells.push(calendarCells);
                 elements.dayNumberContainer.push(dayNumberContainer);
 
-
+                // Zähler für Kalenderzellen
+                counter++;
             }
             
         }
