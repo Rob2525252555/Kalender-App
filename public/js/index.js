@@ -3,6 +3,7 @@ import { fetchTasks } from "./api/tasks.api.js";
 import renderCalendar from "./features/calendar/calendar.view.js";
 import dates from "./utils/dates.js"
 import calendarLogic from "./features/calendar/calendar.logic.js";
+import calendarEvents from "./features/calendar/calendar.events.js";
 
 const init = async () => {
     try {
@@ -11,6 +12,7 @@ const init = async () => {
         renderCalendar.renderCalendar();
         dates.setDate();
         calendarLogic.renderThisMonth(state.selectedYear, state.selectedMonth);
+        calendarEvents.init();
  
     } catch (err) {
         console.error("Init fehlgeschlagen:", err);
