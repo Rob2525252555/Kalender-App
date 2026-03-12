@@ -176,13 +176,17 @@ header {
 
     min-width: 0; /*Kalender behält dadurch seine Form, wenn man Fenster verkleinert*/
 }
-
+/* Tageszahl in die Zelle eintragen*/
 .dayNumbers{
     font-weight: bold;
 }
 /* Aktuellen Tag markieren */
-    .currentDay {
+.currentDay {
     box-shadow: 0 0 0 3px var(--color-border-currentDay);
+}
+/* Zellen des letzten und nächsten Monats ausgrauen*/
+.greyCell{
+    background-color: darkgrey;
 }
 
 /* ===================================

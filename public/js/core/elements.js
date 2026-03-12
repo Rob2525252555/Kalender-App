@@ -5,8 +5,13 @@ const elements = {
     btnArrowRight: null,
     currentMonthAndYear: null,
     calendarMainContainer: null,
+    
     calendarCells: [],
-    dayNumberContainer: []
+    dayNumberContainer: [],
+
+    cellsThisMonth: [],
+    greyCellsLastMonth: [],
+    greyCellsNextMonth: [],
 };
 
 export default elements;
