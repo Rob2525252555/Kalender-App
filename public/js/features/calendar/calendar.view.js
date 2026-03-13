@@ -36,8 +36,7 @@ const renderCalendar = {
 
          // Text der Footerlinks
         const footerTexts = ['Impressum', 'Kontakt', 'Datenschutz'];
-
-        
+  
         // Zähler für Kalender-Zellen
         let counter = 1;
 
@@ -75,15 +74,14 @@ const renderCalendar = {
             tagName: 'button',
             id: 'btnArrowLeft',
             innerText: '◀',
-            classList: ['innerHeaderContainer', 'prevMonth'],
+            classList: ['prevMonth'],
             parent: headerContainer
         })
 
-        const currentMonthAndYear = dom.create({
+        const monthAndTaskContainer = dom.create({
             tagName: 'div',
-            id: 'innerHeaderContainer',
-            classList: ['innerHeaderContainer', 'currentMonthAndYear'],
-            innerText: 'month year',
+            id: 'monthAndTaskContainer',
+            classList: ['monthAndTaskContainer'],
             parent: headerContainer
         })
 
@@ -91,8 +89,31 @@ const renderCalendar = {
             tagName: 'button',
             id: 'btnArrowRight',
             innerText: '▶',
-            classList: ['innerHeaderContainer', 'nextMonth'],
+            classList: ['nextMonth'],
             parent: headerContainer
+        })
+
+        const currentMonthAndYear = dom.create({
+            tagName: 'div',
+            id: 'currentMonthAndYear',
+            classList: ['currentMonthAndYear'],
+            innerText: 'Monat Jahr',
+            parent: monthAndTaskContainer
+        })
+
+        const addTaskContainer = dom.create({
+            tagName: 'div',
+            id: 'addTaskContainer',
+            classList: ['addTaskContainer'],
+            parent:monthAndTaskContainer
+        })
+
+        const addTaskButton =dom.create({
+            tagName: 'button',
+            id:'addTaskButton',
+            classList: ['addTaskButton'],
+            innerText: '+ Neue Aufgabe hinzufügen',
+            parent: addTaskContainer
         })
 
         // ----------------------------------------
@@ -177,8 +198,7 @@ const renderCalendar = {
 
                 // Zähler für Kalenderzellen
                 counter++;
-            }
-            
+            }      
         }
         // ----------------------------------------
         // Footer
@@ -198,8 +218,6 @@ const renderCalendar = {
             parent: footer
         })
 
-       
-
         /**Erzeugen der Footerlinks */
         for (let i = 0; i < footerTexts.length; i++) {
 
@@ -209,7 +227,7 @@ const renderCalendar = {
             innerText: footerTexts[i],
             classList: ['innerFooterContainer'],
             parent: footerContainer
-        })   
+            })   
         }
 
         // ----------------------------------------
@@ -221,7 +239,7 @@ const renderCalendar = {
         elements.btnArrowRight = btnArrowRight;
         elements.currentMonthAndYear = currentMonthAndYear;
         elements.calendarMainContainer = calendarMainContainer;
-
+        elements.addTaskButton = addTaskButton;
     }
 };
 

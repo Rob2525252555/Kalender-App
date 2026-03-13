@@ -3,6 +3,7 @@ const elements = {
     header: null,
     btnArrowLeft: null,
     btnArrowRight: null,
+    addTaskButton: null,
     currentMonthAndYear: null,
     calendarMainContainer: null,
     

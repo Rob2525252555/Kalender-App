@@ -30,9 +30,9 @@
   /* ===================================
      Neue Task
   =================================== */
-  --color-bg-newTask: rgba(231, 195, 77, 0.5);              /* Hellgrünlich transparent für neuen Task Container */
-  --color-bg-newTask-hover: rgba(150, 255, 150, 0.8);       /* Intensiveres Grün beim Hover */
-  --color-newTaskButton-font: rgba(0, 128, 0, 1);           /* Grün für +Neue Aufgabe Button */
+  --color-bg-newTask: rgba(255,255,255,1);                  /* Weiß für neuen Task Container */
+  --color-bg-newTask-hover: rgba(247, 247, 247, 0.8);       /* Leichtes Grau beim Hover */
+  --color-newTaskButton-font: rgba(0, 128, 0, 1);           /* Grüne Schrift für +Neue Aufgabe Button */
 
   /* ===================================
      Footer
@@ -82,14 +82,22 @@ header {
     max-width: 800px;
     height: 35px;
     margin-left: 50px;
-    margin-right: 50px;   
+    margin-right: 50px;  
 }
 
-/* Container für Jahr/Monat und Buttons */
-.innerHeaderContainer {
-    height: 100%;
+/* Container für Monat/Jahr Anzeige und "Aufgabe hinzufügen"-Button*/
+.monthAndTaskContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Abstand "Aufgabe hinzufügen" - Button zur Monats/Jahresanzeige*/
+.addTaskContainer {
+    margin-top: 10px;
+}
+
+/* Container für Monats/Jahres anzeige*/
 .currentMonthAndYear{
     display: flex;
     align-items: center;  
@@ -99,6 +107,23 @@ header {
 }
 
 /*--------------------- Header-Buttons ------------------*/
+.addTaskButton {
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--color-bg-newTask);
+    color: var(--color-newTaskButton-font);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.addTaskButton:hover {
+    background-color: var(--color-bg-newTask-hover);
+    transform: scale(1.05);
+}
+
 .prevMonth, .nextMonth {
     cursor: pointer;
     width: 35px;
@@ -236,33 +261,6 @@ header {
     color: var(--color-taskEmployee-font);
     overflow-wrap: break-word;
 }
-
-/*------------------- Neue Task hinzufügen------------------*/
-
-/* Neue Task hinzufügen Container */
-.newTask {
-    background-color: var(--color-bg-newTask); 
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    padding: 2px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.newTask:hover {
-    background-color: var(--color-bg-newTask-hover);
-}
-
-.addTaskButton {
-    background: none;
-    border: none;
-    color: var(--color-newTaskButton-font);
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 14px;
-}
-
 
 /* ===================================
    Footer
