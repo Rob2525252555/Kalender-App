@@ -1,8 +1,29 @@
 import dom from "../../core/dom.js";
 import elements from "../../core/elements.js"
 
+/**
+ * @module tasks.view
+ * Modul zum Rendern von Tasks innerhalb von Kalenderzellen.
+ * 
+ * Rendern von Titel, Mitarbeiter und Buttons (Details, Bearbeiten, Löschen).
+ * 
+ * Referenz des taskContainers, ID, Startdatum und Enddatum der Task wird in elements.tasksElements gespeichert.
+ */
+
 const renderTask = {
 
+    /**
+     * Rendert eine Task innerhalb einer ausgewählten Kalenderzelle 
+     * und speichert die Referenz.
+     * 
+     * Aufbau:
+     * taskContainer
+     *      TaskHeader -> TaskTitle, TaskButtonsContainer -> Details-Button, Edit-Button, Delete-Button
+     *      TaskEmployee
+     * 
+     * @param {Object} task - Task-Objekt aus dem State    
+     * @param {HTMLElement} parentCell - Kalenderzelle, in die die Task gerendert werden soll
+     */
 
     renderTask(task, parentCell){
 
@@ -64,7 +85,7 @@ const renderTask = {
             parent:taskButtonsContainer 
         })
 
-        // taskContainer mit zugehöriger ID und buttons in elements speichern
+        // taskContainer mit zugehöriger ID und Buttons in elements speichern
         elements.tasksElements.push({
             id: task.id,
             container: taskContainer,
@@ -75,9 +96,7 @@ const renderTask = {
                 edit: editButton,
                 delete: deleteButton
             }
-        })
-        
-        
+        })    
     }
 }
 
