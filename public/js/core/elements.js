@@ -7,12 +7,17 @@ const elements = {
     currentMonthAndYear: null,
     calendarMainContainer: null,
     
+    // Alle Kalenderzellen
     calendarCells: [],
     dayNumberContainer: [],
 
+    // Kalenderzellen
     cellsThisMonth: [],
     greyCellsLastMonth: [],
     greyCellsNextMonth: [],
+
+    // Array um die Aufgaben zu speichern
+    tasksElements: []
 };
 
 export default elements;
