@@ -1,6 +1,7 @@
 import elements from "../../core/elements.js";
 import state from "../../core/state.js";
 import calendarLogic from "./calendar.logic.js";
+import tasksLogic from "../tasks/tasks.logic.js";
 
 /**
  * @module calendar.events
@@ -27,12 +28,12 @@ const calendarEvents = {
             state.selectedYear = state.selectedYear +1;
             state.selectedMonth = 0;
             calendarLogic.renderThisMonth(state.selectedYear, state.selectedMonth);
-
+            tasksLogic.renderTasks();
         } else{
             state.selectedMonth = state.selectedMonth +1;
             calendarLogic.renderThisMonth(state.selectedYear, state.selectedMonth);
-        }
-        
+            tasksLogic.renderTasks();
+        }      
     },
     /**
      * Navigation zum letzten Monat. Falls Januar, Jahr wird um 1 verringert und Monat auf Dezember gesetzt.
@@ -43,9 +44,11 @@ const calendarEvents = {
             state.selectedYear = state.selectedYear - 1;
             state.selectedMonth = 11;
             calendarLogic.renderThisMonth(state.selectedYear, state.selectedMonth);
+            tasksLogic.renderTasks();
         } else{
             state.selectedMonth = state.selectedMonth - 1;
             calendarLogic.renderThisMonth(state.selectedYear, state.selectedMonth);
+            tasksLogic.renderTasks();
         }
     }
 }
