@@ -5,6 +5,8 @@ import dates from "./utils/dates.js"
 import calendarLogic from "./features/calendar/calendar.logic.js";
 import calendarEvents from "./features/calendar/calendar.events.js";
 
+import tasksLogic from "./features/tasks/tasks.logic.js";
+
 const init = async () => {
     try {
         // tasks in den state laden
@@ -13,7 +15,13 @@ const init = async () => {
         dates.setDate();
         calendarLogic.renderThisMonth(state.selectedYear, state.selectedMonth);
         calendarEvents.init();
- 
+        tasksLogic.renderTasks();
+       
+        
+        
+       
+        
+        
     } catch (err) {
         console.error("Init fehlgeschlagen:", err);
     }
