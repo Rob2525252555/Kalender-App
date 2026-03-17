@@ -22,6 +22,7 @@ const calendarEvents = {
     /**
      * Navigation zum nächsten Monat. Falls Dezember, Jahr wird um 1 erhöht und Monat auf Januar gesetzt.
      * Anschließend wird Renderfunktion mit neuen Werten für Jahr und Monat aufgerufen.
+     * Anschließend werden die Tasks gerendert.
      */   
     nextMonth(){
         if (state.selectedMonth === 11) {
@@ -38,6 +39,7 @@ const calendarEvents = {
     /**
      * Navigation zum letzten Monat. Falls Januar, Jahr wird um 1 verringert und Monat auf Dezember gesetzt.
      * Anschließend wird Renderfunktion mit neuen Werten für Jahr und Monat aufgerufen.
+     * Anschließend werden die Tasks gerendert.
      */
     lastMonth(){
         if(state.selectedMonth === 0){
