@@ -10,7 +10,7 @@ import elements from "../../core/elements.js"
  * Referenz des taskContainers, ID, Startdatum und Enddatum der Task wird in elements.tasksElements gespeichert.
  */
 
-const renderTask = {
+const createTaskElement = {
 
     /**
      * Rendert eine Task innerhalb einer ausgewählten Kalenderzelle 
@@ -25,7 +25,7 @@ const renderTask = {
      * @param {HTMLElement} parentCell - Kalenderzelle, in die die Task gerendert werden soll
      */
 
-    renderTask(task, parentCell){
+    createTaskElement(task, parentCell){
 
         const taskContainer = dom.create({
             tagName: 'div',
@@ -100,4 +100,4 @@ const renderTask = {
     }
 }
 
-export default renderTask;
+export default createTaskElement;
