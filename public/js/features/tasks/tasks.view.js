@@ -25,11 +25,11 @@ const createTaskElement = {
      * @param {HTMLElement} parentCell - Kalenderzelle, in die die Task gerendert werden soll
      */
 
-    createTaskElement(task, parentCell){
+    createTaskElement(task, parentCell, isEndDate = false){
 
-        const taskContainer = dom.create({
+            const taskContainer = dom.create({
             tagName: 'div',
-            classList: ['task'],
+            classList: isEndDate? ['task', 'endDateTask'] : ['task'],
             dataset:{
                 id: task.id,
                 startDate: task.startDate,
@@ -37,7 +37,7 @@ const createTaskElement = {
             },
             parent: parentCell,
         })
-
+        
         const taskHeader = dom.create({
             tagName: 'div',
             classList: ['taskHeader'],

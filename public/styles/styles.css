@@ -26,6 +26,8 @@
   --color-boxShadow-tasks: rgba(0, 0, 0, 0.1);              /* Schatten für Tasks */
   --color-boxShadow-tasks-hover: rgba(0, 0, 0, 0.2);        /* Hover-Schatten für Tasks */
   --color-taskEmployee-font: rgba(85, 85, 85, 1);           /* Dunkelgrau für Mitarbeitertext */
+  --color-bg-endDateTask: rgba(255, 97, 97, 1);             /* Blasses Rot für Tasks am Enddatum */
+  --color-bg-endDateTask-hover: rgba(248, 29, 29,1);        /* Intensiveres Rot beom Hover */
 
   /* ===================================
      Neue Task
@@ -260,6 +262,15 @@ header {
 .taskEmployee{
     color: var(--color-taskEmployee-font);
     overflow-wrap: break-word;
+}
+
+.endDateTask{
+    background-color: var(--color-bg-endDateTask);
+}
+
+.endDateTask:hover{
+    background-color: var(--color-bg-endDateTask-hover);
+    box-shadow: 0 3px 6px var(--color-boxShadow-tasks-hover); 
 }
 
 /* ===================================

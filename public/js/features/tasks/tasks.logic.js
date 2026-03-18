@@ -33,13 +33,24 @@ const tasksLogic = {
         const {selectedMonth, selectedYear} = state;
        
         state.tasks.forEach(task =>{
+
+            // Tasks am Startdatum rendern
             const startDate = new Date(task.startDate);
             // Index anpassen, da cellsThisMonth bei 0 startet
-            const dayIndex = startDate.getDate()-1;
+            const dayIndexStartDate = startDate.getDate()-1;
 
             if (startDate.getFullYear() === selectedYear && startDate.getMonth() === selectedMonth) {
-             createTaskElement.createTaskElement(task, elements.cellsThisMonth[dayIndex]);
-            }            
+                createTaskElement.createTaskElement(task, elements.cellsThisMonth[dayIndexStartDate], false);
+            }
+
+            // Tasks am Enddatum rendern
+            const endDate = new Date(task.endDate);
+            // Index anpassen, da cellsThisMonth bei 0 startet
+            const dayIndexEndDate = endDate.getDate()-1;
+
+            if(endDate.getFullYear() === selectedYear && endDate.getMonth() ===selectedMonth){
+                createTaskElement.createTaskElement(task, elements.cellsThisMonth[dayIndexEndDate], true);
+            }                       
         });       
     }
 } 
