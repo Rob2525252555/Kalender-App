@@ -5,9 +5,10 @@ import elements from "../../core/elements.js"
  * @module tasks.view
  * Modul zum Rendern von Tasks innerhalb von Kalenderzellen.
  * 
- * Rendern von Titel, Mitarbeiter und Buttons (Details, Bearbeiten, Löschen).
- * 
- * Referenz des taskContainers, ID, Startdatum und Enddatum der Task wird in elements.tasksElements gespeichert.
+ * Aufgaben:
+ * - Rendern von Titel, Mitarbeiter und Buttons (Details, Bearbeiten, Löschen)
+ * - Wird die Task am Enddatum gerendert, wird zusätzlich die Klasse 'endDateTask' hinzugefügt
+ * - Referenz des taskContainers, ID, Startdatum und Enddatum der Task wird in elements.tasksElements gespeichert
  */
 
 const createTaskElement = {
@@ -15,6 +16,7 @@ const createTaskElement = {
     /**
      * Rendert eine Task innerhalb einer ausgewählten Kalenderzelle 
      * und speichert die Referenz.
+     * Wird die Task am Enddatum gerendert, wird zusätzlich die Klasse 'endDateTask' hinzugefügt.
      * 
      * Aufbau:
      * taskContainer
@@ -23,6 +25,7 @@ const createTaskElement = {
      * 
      * @param {Object} task - Task-Objekt aus dem State    
      * @param {HTMLElement} parentCell - Kalenderzelle, in die die Task gerendert werden soll
+     * @param {boolean} [isEndDate=false] - Gibt an, ob eine Task am Enddatum oder Startdatum gerendert wird
      */
 
     createTaskElement(task, parentCell, isEndDate = false){

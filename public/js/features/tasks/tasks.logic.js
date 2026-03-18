@@ -8,14 +8,14 @@ import createTaskElement from "./tasks.view.js";
  * 
  * Aufgaben:
  * - entfernt alle bereits gerenderten Tasks
- * - ermittelt die passende Kalenderzelle anhand des startDate
- * - rendert tasks im aktuell ausgewählten Monat
+ * - ermittelt die passende Kalenderzelle anhand von startDate und endDate
+ * - rendert Tasks im aktuell ausgewählten Monat
  */
 
 const tasksLogic = {
     /**
      * Entfernt alle aktuell gerenderten Tasks.
-     * Löscht alle Referenzen in elements.tasksElements.
+     * Entfernt alle Referenzen aus elements.tasksElements.
      */
    resetTasks(){        
         elements.tasksElements.forEach(taskElement =>{
@@ -34,7 +34,8 @@ const tasksLogic = {
        
         state.tasks.forEach(task =>{
 
-            // Tasks am Startdatum rendern
+            // Task am Startdatum rendern
+
             const startDate = new Date(task.startDate);
             // Index anpassen, da cellsThisMonth bei 0 startet
             const dayIndexStartDate = startDate.getDate()-1;
@@ -43,12 +44,13 @@ const tasksLogic = {
                 createTaskElement.createTaskElement(task, elements.cellsThisMonth[dayIndexStartDate], false);
             }
 
-            // Tasks am Enddatum rendern
+            // Task am Enddatum rendern
+
             const endDate = new Date(task.endDate);
             // Index anpassen, da cellsThisMonth bei 0 startet
             const dayIndexEndDate = endDate.getDate()-1;
 
-            if(endDate.getFullYear() === selectedYear && endDate.getMonth() ===selectedMonth){
+            if(endDate.getFullYear() === selectedYear && endDate.getMonth() === selectedMonth){
                 createTaskElement.createTaskElement(task, elements.cellsThisMonth[dayIndexEndDate], true);
             }                       
         });       
