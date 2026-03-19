@@ -17,7 +17,12 @@ const elements = {
     greyCellsNextMonth: [],
 
     // Array um die Aufgaben zu speichern
-    tasksElements: []
+    tasksElements: [],
+
+    //overlay und modal
+    modalOverlay: null,
+    overlayCloseButton: null
+    
 };
 
 export default elements;
