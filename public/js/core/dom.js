@@ -50,6 +50,9 @@ const dom = {
         type = '',
         value = '',
         title = '',
+        htmlFor = '',
+
+        required = false,
 
         className = '',
         classList = [],
@@ -70,9 +73,14 @@ const dom = {
         if(className) newElement.className = className;
         if(classList.length) newElement.classList.add(...classList);
         if(title) newElement.title = title;
+        if(htmlFor) newElement.htmlFor = htmlFor;
 
         if(innerText) newElement.innerText = innerText;
         else if(innerHTML) newElement.innerHTML = innerHTML;
+
+        if(required && (tagName === 'input' || tagName === 'textarea' || tagName === 'select')) {
+        newElement.required = true;
+        }
 
         // dataset Attribute hinzufügen  
         Object.entries(dataset).forEach(([key,value])=>{
