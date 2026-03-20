@@ -19,10 +19,10 @@ const elements = {
     // Array um die Aufgaben zu speichern
     tasksElements: [],
 
-    //overlay und modal
+    // Overlay und Modal
     modalOverlay: null,
-    overlayCloseButton: null
-    
+    overlayCloseButton: null,
+    formModal: null,    
 };
 
 export default elements;
