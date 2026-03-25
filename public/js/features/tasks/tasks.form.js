@@ -107,6 +107,7 @@ const createTaskForm = {
             type: 'date',
             id: 'taskEnd',
             name: 'endDate',
+            required: true,
             parent: taskFormGroup4
         });
 
@@ -140,7 +141,9 @@ const createTaskForm = {
             type: 'submit',
             innerText: 'Aufgabe erstellen',
             parent: taskForm
-        });       
+        });
+        
+        
     }
 };
 
