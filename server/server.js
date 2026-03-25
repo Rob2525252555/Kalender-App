@@ -77,8 +77,8 @@ app.post('/api/tasks', async (req, res) => {
     const { title, employee, startDate, endDate, description } = req.body;
 
     // Pflichtfelder prüfen
-    if (!title || !employee || !startDate || !endDate || !description) {
-      return res.status(400).json({ error: 'Alle Felder müssen ausgefüllt sein.' });
+    if (!title || !employee || !startDate || !endDate) {
+      return res.status(400).json({ error: 'Es wurden nicht alles Pflichtfelder ausgefüllt' });
     }
 
     // Startdatum darf nicht nach Enddatum sein
@@ -123,7 +123,7 @@ app.put('/api/tasks/:id', async (req, res) => {
     const { title, employee, startDate, endDate, description } = req.body;
 
     // Pflichtfelder prüfen
-    if (!title || !employee || !startDate || !endDate || !description) {
+    if (!title || !employee || !startDate || !endDate) {
       return res.status(400).json({ error: 'Nicht alle Felder ausgefüllt' });
     }
 
