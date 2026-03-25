@@ -143,7 +143,7 @@ const createTaskForm = {
             parent: taskForm
         });
         
-        
+        elements.taskForm = taskForm;
     }
 };
 

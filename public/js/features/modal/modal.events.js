@@ -1,5 +1,6 @@
 import elements from "../../core/elements.js";
 import createTaskForm from "../tasks/tasks.form.js";
+import taskEvents from "../tasks/tasks.events.js";
 /**
  * @module modal.events
  * Modul zum Anzeigen oder Verbergen des Overlays mit Modal.
@@ -26,6 +27,7 @@ const modalEvents = {
         elements.modalOverlay.classList.add('modal--active');
         elements.formModal.innerHTML = '';
         createTaskForm.createTaskForm();
+        elements.taskForm.addEventListener('submit', taskEvents.handleSubmitTaskForm);   
     },
     /**
      * Modal verbergen
