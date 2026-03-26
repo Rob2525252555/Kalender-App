@@ -48,7 +48,6 @@ export async function postTask(e){
         }
 
         const result = await res.json();
-        console.log('Aufgabe erfolgreich gespeichert',result);
         
         form.reset();
 
