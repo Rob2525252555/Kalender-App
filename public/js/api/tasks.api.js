@@ -3,12 +3,20 @@ import tasksLogic from "../features/tasks/tasks.logic.js";
 
 const BASE_URL = '/api/tasks';
 
-// laden der Tasks aus dem Backend 
+/**
+ * Lädt alle Tasks aus dem Backend
+ * Ablauf:
+ * - gib Array mit Task-Objekten zurück 
+ * - Bei Fehler leeres Array
+ * @returns {Promise<Object[]>} - Promise, das Array von Task-Objekten auflöst
+ */
 export async function fetchTasks(){
     try{
         const res = await fetch(BASE_URL);
+        
         if(!res.ok)throw new Error(`Fehler beim laden der Tasks ${res.status}`);
         const data = await res.json();
+        
         return data;
     }catch(err){
         console.error('Fehler beim laden der Tasks', err);
