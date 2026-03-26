@@ -16,7 +16,16 @@ export async function fetchTasks(){
     }
 }
 
-// speichern der Task im Backend als Json und state aktualisieren
+/**
+ * Speichert eine neue Task im Backend und aktualisiert den State und UI.
+ * Ablauf:
+ * - Daten aus dem Formular extrahieren und in Objekt umwandeln
+ * - Daten in Json umwandeln und im Backend speichern
+ * - Als Bestätigung das gespeicherte Objekt zurück geben lassen
+ * - State aktualisieren 
+ * - Tasks neu rendern
+ * @param {SubmitEvent} e - Submit-Event des Formulars
+ */
 export async function postTask(e){
     e.preventDefault();
     
@@ -26,14 +35,13 @@ export async function postTask(e){
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
     
-    try{// Neue Aufgabe in data/tasks.json als Json speichern
+    try{
         const res = await fetch(BASE_URL, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)     
         });
 
-        // Error aus Server.js anzeigen
         if (!res.ok) {
             const error = await res.json();
             throw new Error(error.error);  
@@ -44,9 +52,8 @@ export async function postTask(e){
         
         form.reset();
 
-        // state aktualisieren
         state.tasks.push(result);
-        // mit neuer Task Aufgaben neu rendern
+        
         tasksLogic.renderTasks();
     }
     catch(err){

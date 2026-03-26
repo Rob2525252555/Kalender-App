@@ -5,14 +5,16 @@ import taskEvents from "../tasks/tasks.events.js";
  * @module modal.events
  * Modul zum Anzeigen oder Verbergen des Overlays mit Modal.
  * Aufgaben:
- * - Overlay mit Modal anzeigen, nach Klick auf "+ Aufgabe hinzufügen"- Button
+ * - Overlay mit Modal anzeigen nach Klick auf "+ Aufgabe hinzufügen" -Button
  * - Modal verbergen bei Klick auf Close-Button, Klick auf das Overlay oder Drücken der Esc-Taste
+ * - Rendern des Aufgabenformulars
+ * - Dem Aufgabenformular einen Submit-Eventlistener anhängen zum Speichern von Aufgaben
  */
 
 const modalEvents = {
 
     /**
-     * Initialisiere alle Eventlistener für das Modal
+     * Initialisiert alle Eventlistener für das Modal
      */
     init(){  
         elements.addTaskButton.addEventListener('click', modalEvents.openModal);
@@ -21,7 +23,12 @@ const modalEvents = {
         document.addEventListener('keydown', modalEvents.handleOverlayEsc);
     },
     /**
-     * Modal anzeigen
+     * Modal anzeigen und Aufgabenformular rendern
+     * Ablauf:
+     * - Overlay und Modal sichtbar machen
+     * - Vorhandenes Formular entfernen
+     * - Neues Formular rendern
+     * - Hängt dem neuem Formular einen Submit-Eventlistener für das Speichern von Aufgaben an
      */
     openModal(){
         elements.modalOverlay.classList.add('modal--active');

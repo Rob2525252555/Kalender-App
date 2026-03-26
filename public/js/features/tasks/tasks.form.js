@@ -4,7 +4,7 @@ import elements from "../../core/elements.js";
 const createTaskForm = {
     createTaskForm() {
         
-        // Task Formular erstellen
+        // Task Formular erstellen und in elements speichern
         const taskForm = dom.create({
             tagName: 'form',
             classList: ['task-form'],
