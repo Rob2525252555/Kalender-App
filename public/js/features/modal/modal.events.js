@@ -38,9 +38,15 @@ const modalEvents = {
     },
     /**
      * Modal verbergen
+     * Ablauf: 
+     * - Modal verbergen
+     * - Vorhandenes Formlar entfernen
+     * - Referenz des Formulars entfernen
      */
     closeModal(){
         elements.modalOverlay.classList.remove('modal--active');
+        elements.formModal.innerHTML = '';
+        elements.taskForm = null;
     },
     /**
      * Modal verbergen bei Klick auf das Overlay 
