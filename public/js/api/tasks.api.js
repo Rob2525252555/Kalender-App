@@ -68,7 +68,15 @@ export async function postTask(e){
         console.error('Fehler beim Speichern der Aufgabe: ', err);
     }    
 }
-
+/**
+ * Löscht eine Task aus dem Backend und aktualisiert State und UI.
+ * Ablauf:
+ * - Task wird im Backend gelöscht anhand der ID
+ * - Task wird aus dem State gelöscht
+ * - Task-Element Wird aus der UI gelöscht
+ * - Referenz der Task wird aus elements.tasksElements entfernt
+ * @param {string} taskID - ID der Task, die gelöscht wird 
+ */
 export async function deleteTask(taskID){
     try{
         const res = await fetch(`${BASE_URL}/${taskID}`, {method: 'DELETE'});
@@ -83,7 +91,7 @@ export async function deleteTask(taskID){
         const taskElementsToRemove = elements.tasksElements.filter(el => el.id === taskID);
         
         taskElementsToRemove.forEach(el => {
-            el.container.remove(); // Task aus DOM entfernen
+            el.container.remove(); 
         });
 
         elements.tasksElements = elements.tasksElements.filter(el => el.id !== taskID);
