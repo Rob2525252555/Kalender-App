@@ -71,6 +71,10 @@ const createTaskElement = {
             tagName: 'button',
             title: 'Details',
             innerText: '🔍',
+            dataset: {
+                id: task.id,
+                action: 'detailsButton'
+            },
             parent:taskButtonsContainer 
         })
 
@@ -78,6 +82,10 @@ const createTaskElement = {
             tagName: 'button',
             title: 'Bearbeiten',
             innerText: '✏️',
+            dataset: {
+                id: task.id,
+                action: 'editButton'
+            },
             parent:taskButtonsContainer 
         })
 

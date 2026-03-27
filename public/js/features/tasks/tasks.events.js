@@ -9,17 +9,18 @@ import { deleteTask } from "../../api/tasks.api.js";
  * Aufgaben:
  * - Initialisiert Event Delegation für Task-Buttons (Details, Bearbeiten, Löschen)
  * - Ruft die Funktion postTask auf und übergibt Formular-Daten, um Aufgaben im Backend zu speichern
- * - Erkennt Klicks auf den Löschen-Button und ruft deleteTask auf, wobei die ID der Task übergeben wird
+ * - Erkennt Klicks auf Task-Buttons (Details, Bearbeiten, Löschen), 
+ *   ruft dann die passende Funktion auf und übergibt die ID der Task
  */
 
 const taskEvents = {
     /**
-     * Initialisiert Event Delegation für Task-Buttons
-     * Hängt einen Click-Listener an den Hauptcontainer des Kalenders,
+     * Initialisiert Event Delegation für Task-Buttons.
+     * Hängt einen Click-Listener an den Kalender-Container,
      * um Klicks auf Task-Buttons zu erkennen.
      */
     init(){
-        elements.calendarMainContainer.addEventListener('click', taskEvents.handleDeleteTask);
+        elements.calendarMainContainer.addEventListener('click', taskEvents.handleTaskButtonsClick);
     },
     /**
      * Übergibt das Event an die API Funktion postTask
@@ -29,16 +30,32 @@ const taskEvents = {
         postTask(e);    
     },
     /**
-     * Überprüft ob der Löschen-Button geklickt wurde.
-     * Übergibt ID der Task an API Funktion deleteTask.
+     * Überprüft ob und welcher Task-Button (Details, Bearbeiten, Löschen) geklickt wurde.
+     * Wenn ja, ruft die passende Funktion auf.
+     * Übergibt ID der Task an die jeweilige Funktion.
      * @param {Event} e - Click-Event des Kalender-Containers
      */
-    handleDeleteTask(e){
-        if(e.target.dataset.action === 'deleteButton'){
-           
-            const taskID = e.target.dataset.id;
-            deleteTask(taskID);
-        }      
+    handleTaskButtonsClick(e){
+        // Bei Klick auf Elemente innerhalb des Buttons wird der Button geklickt.
+        const button = e.target.closest('button');  
+        if (!button) return;
+
+        const action = button.dataset.action;
+        const taskID = button.dataset.id;
+
+        switch(action){
+            case 'deleteButton':
+                deleteTask(taskID);
+                break;
+            case 'editButton':
+                //platzhalter für Edit Funktion
+                console.log('edit button geklickt');
+                break;
+            case 'detailsButton':
+                //platzhalter für Details Funktion
+                console.log('detailsButton geklickt');
+                break;
+        }   
     }
 }
 
