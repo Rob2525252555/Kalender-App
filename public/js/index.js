@@ -7,12 +7,15 @@ import calendarEvents from "./features/calendar/calendar.events.js";
 import tasksLogic from "./features/tasks/tasks.logic.js";
 import createModal from "./features/modal/modal.view.js";
 import modalEvents from "./features/modal/modal.events.js";
+import taskEvents from "./features/tasks/tasks.events.js";
 
 const init = async () => {
     try {
         // tasks in den state laden
         state.tasks = await fetchTasks();
         renderCalendar.renderCalendar();
+
+        taskEvents.init();
 
         createModal.createModal();
         modalEvents.init();

@@ -85,6 +85,10 @@ const createTaskElement = {
             tagName: 'button',
             title: 'Löschen',
             innerText: '✕',
+            dataset: {
+                id: task.id,
+                action: 'deleteButton'
+            },
             parent:taskButtonsContainer 
         })
 

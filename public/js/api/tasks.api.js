@@ -1,5 +1,6 @@
 import state from "../core/state.js";
 import tasksLogic from "../features/tasks/tasks.logic.js";
+import elements from "../core/elements.js";
 
 const BASE_URL = '/api/tasks';
 
@@ -66,4 +67,28 @@ export async function postTask(e){
     catch(err){
         console.error('Fehler beim Speichern der Aufgabe: ', err);
     }    
+}
+
+export async function deleteTask(taskID){
+    try{
+        const res = await fetch(`${BASE_URL}/${taskID}`, {method: 'DELETE'});
+        if(!res.ok){
+            const error = await res.json();
+            throw new Error(error.error || 'Task konnte im Backend nicht gelöscht werden');
+        }
+        // aus State löschen    
+        state.tasks = state.tasks.filter(task => task.id !== taskID);
+        
+        // aus UI und Referenz löschen
+        const taskElementsToRemove = elements.tasksElements.filter(el => el.id === taskID);
+        
+        taskElementsToRemove.forEach(el => {
+            el.container.remove(); // Task aus DOM entfernen
+        });
+
+        elements.tasksElements = elements.tasksElements.filter(el => el.id !== taskID);
+    }
+    catch(err){
+        console.error('Fehler beim Löschen der Aufgabe: ', err)
+    }  
 }

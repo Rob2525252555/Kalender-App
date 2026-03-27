@@ -1,4 +1,6 @@
 import { postTask } from "../../api/tasks.api.js";
+import elements from "../../core/elements.js";
+import { deleteTask } from "../../api/tasks.api.js";
 
 /**
  * @module tasks.events
@@ -7,6 +9,9 @@ import { postTask } from "../../api/tasks.api.js";
  */
 
 const taskEvents = {
+    init(){
+        elements.calendarMainContainer.addEventListener('click', taskEvents.handleDeleteTask);
+    },
 
     /**
      * Übergibt das Event an die API Funktion postTask
@@ -14,6 +19,14 @@ const taskEvents = {
      */
     handleSubmitTaskForm(e){
         postTask(e);    
+    },
+
+    handleDeleteTask(e){
+        if(e.target.dataset.action === 'deleteButton'){
+           
+            const taskID = e.target.dataset.id;
+            deleteTask(taskID);
+        }      
     }
 }
 
