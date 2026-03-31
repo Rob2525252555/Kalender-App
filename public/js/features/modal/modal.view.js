@@ -12,13 +12,11 @@ import elements from "../../core/elements.js";
  * - Speichert die Referenzen von Overlay und Close-Button
  */
 
- const createModal = {
-
     /**
      * Erstellt das Modal mit Overlay und Close-Button und
      *  speichert die Referenzen in elements
      */
-    createModal(){
+   export function createModal(){
    
     const modalOverlay = dom.create({
         classList: ["modal-overlay"],
@@ -42,6 +40,5 @@ import elements from "../../core/elements.js";
     elements.overlayCloseButton = overlayCloseButton;
     elements.modalContent = modalContent;
     }
-}
 
-export default createModal;
+

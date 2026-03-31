@@ -5,7 +5,7 @@ import dates from "./utils/dates.js"
 import calendarLogic from "./features/calendar/calendar.logic.js";
 import calendarEvents from "./features/calendar/calendar.events.js";
 import tasksLogic from "./features/tasks/tasks.logic.js";
-import createModal from "./features/modal/modal.view.js";
+import { createModal } from "./features/modal/modal.view.js";
 import modalEvents from "./features/modal/modal.events.js";
 import taskEvents from "./features/tasks/tasks.events.js";
 
@@ -17,7 +17,7 @@ const init = async () => {
 
         taskEvents.init();
 
-        createModal.createModal();
+        createModal();
         modalEvents.init();
 
         dates.setDate();
