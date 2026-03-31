@@ -1,8 +1,7 @@
 import dom from "../../core/dom.js";
 import elements from "../../core/elements.js";
 
-const createTaskForm = {
-    createTaskForm() {
+export function createTaskForm(){
         
         // Task Formular erstellen und in elements speichern
         const taskForm = dom.create({
@@ -135,7 +134,7 @@ const createTaskForm = {
         });
 
         // --- Submit Button ---
-        const submitAddTaskButton = dom.create({
+        dom.create({
             tagName: 'button',
             classList: ['form-button'],
             type: 'submit',
@@ -144,7 +143,5 @@ const createTaskForm = {
         });
         
         elements.taskForm = taskForm;
-    }
-};
+    };
 
-export default createTaskForm;

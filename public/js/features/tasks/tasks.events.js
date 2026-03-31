@@ -2,7 +2,7 @@ import { postTask } from "../../api/tasks.api.js";
 import elements from "../../core/elements.js";
 import { deleteTask } from "../../api/tasks.api.js";
 import modalEvents from "../modal/modal.events.js";
-import createTaskForm from "./tasks.form.js";
+import { createTaskForm } from "./tasks.form.js";
 
 /**
  * @module tasks.events
@@ -34,7 +34,7 @@ const taskEvents = {
      */
     handleAddTaskButton(){
         modalEvents.openModal();
-        createTaskForm.createTaskForm();
+        createTaskForm();
         elements.taskForm.addEventListener('submit', postTask, {once: true});
     },
     /**
