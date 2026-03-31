@@ -11,7 +11,7 @@ import elements from "../../core/elements.js"
  * - Referenz des taskContainers, ID, Startdatum und Enddatum der Task wird in elements.tasksElements gespeichert
  */
 
-const createTaskElement = {
+
 
     /**
      * Rendert eine Task innerhalb einer ausgewählten Kalenderzelle 
@@ -28,7 +28,7 @@ const createTaskElement = {
      * @param {boolean} [isEndDate=false] - Gibt an, ob eine Task am Enddatum oder Startdatum gerendert wird
      */
 
-    createTaskElement(task, parentCell, isEndDate = false){
+    export function createTaskElement(task, parentCell, isEndDate = false){
 
             const taskContainer = dom.create({
             tagName: 'div',
@@ -112,7 +112,4 @@ const createTaskElement = {
                 delete: deleteButton
             }
         })    
-    }
-}
-
-export default createTaskElement;
+    };

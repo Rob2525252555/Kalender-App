@@ -1,6 +1,6 @@
 import state from "../../core/state.js";
 import elements from "../../core/elements.js";
-import createTaskElement from "./tasks.view.js";
+import { createTaskElement } from "./tasks.view.js";
 
 /**
  * @module tasks.logic
@@ -41,7 +41,7 @@ const tasksLogic = {
             const dayIndexStartDate = startDate.getDate()-1;
 
             if (startDate.getFullYear() === selectedYear && startDate.getMonth() === selectedMonth) {
-                createTaskElement.createTaskElement(task, elements.cellsThisMonth[dayIndexStartDate], false);
+                createTaskElement(task, elements.cellsThisMonth[dayIndexStartDate], false);
             }
 
             // Task am Enddatum rendern
@@ -51,7 +51,7 @@ const tasksLogic = {
             const dayIndexEndDate = endDate.getDate()-1;
 
             if(endDate.getFullYear() === selectedYear && endDate.getMonth() === selectedMonth){
-                createTaskElement.createTaskElement(task, elements.cellsThisMonth[dayIndexEndDate], true);
+                createTaskElement(task, elements.cellsThisMonth[dayIndexEndDate], true);
             }                       
         });       
     }
