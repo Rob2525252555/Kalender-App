@@ -15,8 +15,7 @@ import dates from "../../utils/dates.js";
  * `dom.create()` verwendet.
  */
 
-const renderCalendar = {
-    renderCalendar(){
+export function renderCalendar(){
         /**
          * Aufbau: 
          * Hauptcontainer
@@ -240,7 +239,6 @@ const renderCalendar = {
         elements.currentMonthAndYear = currentMonthAndYear;
         elements.calendarMainContainer = calendarMainContainer;
         elements.addTaskButton = addTaskButton;
-    }
-};
+    };
 
-export default renderCalendar;
+
