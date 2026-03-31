@@ -8,7 +8,7 @@ const createTaskForm = {
         const taskForm = dom.create({
             tagName: 'form',
             classList: ['task-form'],
-            parent: elements.formModal
+            parent: elements.modalContent
         });
 
         // --- Titel ---

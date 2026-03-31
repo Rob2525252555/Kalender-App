@@ -25,7 +25,7 @@ import elements from "../../core/elements.js";
         parent: document.body
     });
 
-    const formModal = dom.create({
+    const modalContent = dom.create({
         classList: ["modal-container"],
         parent: modalOverlay
     });
@@ -34,13 +34,13 @@ import elements from "../../core/elements.js";
         tagName: "button",
         innerText: "×",
         classList: ["modal-close"],
-        parent: formModal
+        parent: modalContent
     });
 
     // Overlay, Modal und Close-Button in elements speichern
     elements.modalOverlay = modalOverlay;
     elements.overlayCloseButton = overlayCloseButton;
-    elements.formModal = formModal;
+    elements.modalContent = modalContent;
     }
 }
 

@@ -22,7 +22,7 @@ const elements = {
     // Overlay und Modal
     modalOverlay: null,
     overlayCloseButton: null,
-    formModal: null,   
+    modalContent: null,   
     
     // Formular um Aufgaben hinzuzufügen oder zu bearbeiten
     taskForm: null

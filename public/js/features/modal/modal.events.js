@@ -32,7 +32,7 @@ const modalEvents = {
      */
     openModal(){
         elements.modalOverlay.classList.add('modal--active');
-        elements.formModal.innerHTML = '';
+        elements.modalContent.innerHTML = '';
         createTaskForm.createTaskForm();
         elements.taskForm.addEventListener('submit', taskEvents.handleSubmitTaskForm);   
     },
@@ -45,7 +45,7 @@ const modalEvents = {
      */
     closeModal(){
         elements.modalOverlay.classList.remove('modal--active');
-        elements.formModal.innerHTML = '';
+        elements.modalContent.innerHTML = '';
         elements.taskForm = null;
     },
     /**
