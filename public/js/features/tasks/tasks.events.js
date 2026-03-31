@@ -1,6 +1,8 @@
 import { postTask } from "../../api/tasks.api.js";
 import elements from "../../core/elements.js";
 import { deleteTask } from "../../api/tasks.api.js";
+import modalEvents from "../modal/modal.events.js";
+import createTaskForm from "./tasks.form.js";
 
 /**
  * @module tasks.events
@@ -8,7 +10,8 @@ import { deleteTask } from "../../api/tasks.api.js";
  * 
  * Aufgaben:
  * - Initialisiert Event Delegation für Task-Buttons (Details, Bearbeiten, Löschen)
- * - Ruft die Funktion postTask auf und übergibt Formular-Daten, um Aufgaben im Backend zu speichern
+ * - Fügt dem '+ Aufgabe hinzufügen'- Button einen Eventlistener hinzu
+ * - Callback Funktion für '+ Aufgabe hinzufügen'- Button wird definiert
  * - Erkennt Klicks auf Task-Buttons (Details, Bearbeiten, Löschen), 
  *   ruft dann die passende Funktion auf und übergibt die ID der Task
  */
@@ -21,13 +24,18 @@ const taskEvents = {
      */
     init(){
         elements.calendarMainContainer.addEventListener('click', taskEvents.handleTaskButtonsClick);
+        elements.addTaskButton.addEventListener('click', taskEvents.handleAddTaskButton);
     },
     /**
-     * Übergibt das Event an die API Funktion postTask
-     * @param {SubmitEvent} e - Submit-Event des Formulars
+     * Öffnet das Modal.
+     * Rendert Formular um Aufgaben hinzuzufügen.
+     * Ruft beim Submit des Formulars die API Funktion postTask auf, um die Aufgabe zu speichern.
+     * Submit Listener wird nur einmal ausgeführt {once: true}.
      */
-    handleSubmitTaskForm(e){
-        postTask(e);    
+    handleAddTaskButton(){
+        modalEvents.openModal();
+        createTaskForm.createTaskForm();
+        elements.taskForm.addEventListener('submit', postTask, {once: true});
     },
     /**
      * Überprüft ob und welcher Task-Button (Details, Bearbeiten, Löschen) geklickt wurde.
