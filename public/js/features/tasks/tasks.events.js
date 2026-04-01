@@ -24,7 +24,7 @@ const taskEvents = {
      */
     init(){
         elements.calendarMainContainer.addEventListener('click', taskEvents.handleTaskButtonsClick);
-        elements.addTaskButton.addEventListener('click', taskEvents.handleAddTaskButton);
+        elements.addTaskButton.addEventListener('click', taskEvents.handleAddTask);
     },
     /**
      * Öffnet das Modal.
@@ -32,7 +32,7 @@ const taskEvents = {
      * Ruft beim Submit des Formulars die API Funktion postTask auf, um die Aufgabe zu speichern.
      * Submit Listener wird nur einmal ausgeführt {once: true}.
      */
-    handleAddTaskButton(){
+    handleAddTask(){
         modalEvents.openModal();
         createTaskForm();
         elements.formSubmitButton.innerText = 'Aufgabe erstellen';
