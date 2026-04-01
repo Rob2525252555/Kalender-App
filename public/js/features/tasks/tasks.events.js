@@ -35,6 +35,7 @@ const taskEvents = {
     handleAddTaskButton(){
         modalEvents.openModal();
         createTaskForm();
+        elements.formSubmitButton.innerText = 'Aufgabe erstellen';
         elements.taskForm.addEventListener('submit', postTask, {once: true});
     },
     /**
