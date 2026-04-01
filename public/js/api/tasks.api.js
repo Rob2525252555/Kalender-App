@@ -1,6 +1,7 @@
 import state from "../core/state.js";
 import tasksLogic from "../features/tasks/tasks.logic.js";
 import elements from "../core/elements.js";
+import modalEvents from "../features/modal/modal.events.js";
 
 const BASE_URL = '/api/tasks';
 
@@ -24,7 +25,6 @@ export async function fetchTasks(){
         return [];
     }
 }
-
 /**
  * Speichert eine neue Task im Backend und aktualisiert den State und UI.
  * Ablauf:
@@ -67,6 +67,50 @@ export async function postTask(e){
     catch(err){
         console.error('Fehler beim Speichern der Aufgabe: ', err);
     }    
+}
+/**
+ * Ändert eine vorhandene Task im Backend und aktualisiert die UI.
+ * Ablauf:
+ * - Einträge des Formulars auslesen und in Objekt umwandeln
+ * - ID der zugehörigen Task aus dem Formular auslesen
+ * - API-Call durchführen um Task im Backend zu ändern
+ * - Aktualisierte Task vom Backend erhalten und den State damit aktualisieren
+ * - Tasks neu rendern und Modal schließen
+ * @param {SubmitEvent} e - Submit-Event des Formulars
+ */
+export async function updateTask(e){
+    try{
+    e.preventDefault();
+
+    const form = e.target;
+    
+    const formData =  new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    const taskID = form.dataset.id;
+    
+    const res = await fetch(`${BASE_URL}/${taskID}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    });
+
+    if (!res.ok){
+        const error = await res.json();
+        throw new Error(error.error);
+    }
+
+    const updatedTask = await res.json();
+
+    // finde Task anhand der ID und ersetze sie 
+    state.tasks = state.tasks.map(task => task.id === taskID ? updatedTask: task);
+
+    tasksLogic.renderTasks();
+
+    modalEvents.closeModal();
+    }catch(err){
+        console.error('Fehler beim Ändern der Aufgabe: ', err);
+    }
 }
 /**
  * Löscht eine Task aus dem Backend und aktualisiert State und UI.

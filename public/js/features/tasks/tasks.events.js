@@ -1,8 +1,8 @@
-import { postTask } from "../../api/tasks.api.js";
+import { postTask, deleteTask, updateTask } from "../../api/tasks.api.js";
 import elements from "../../core/elements.js";
-import { deleteTask } from "../../api/tasks.api.js";
 import modalEvents from "../modal/modal.events.js";
 import { createTaskForm } from "./tasks.form.js";
+import state from "../../core/state.js";
 
 /**
  * @module tasks.events
@@ -38,9 +38,36 @@ const taskEvents = {
         elements.taskForm.addEventListener('submit', postTask, {once: true});
     },
     /**
+     * Bereitet alles zum Ändern einer Task vor.
+     * Ablauf:
+     * - Modal öffnen und Formular darin rendern
+     * - Text auf Submit-Button anpassen
+     * - Die zugehörige Task anhand der ID im State finden
+     * - Die aktuellen Werte der Task ins Formular eintragen
+     * - Die ID der Task im Formular speichern als Dataset-Attribut
+     * - Dem Formular Submit-Eventlistener anhängen, um die Funktion zum Ändern 
+     *   der Task aufzurufen
+     * @param {string} taskID - ID der betroffenen Task
+     */
+    handleEditTask(taskID){
+        modalEvents.openModal();
+        createTaskForm();
+
+        elements.formSubmitButton.innerText = 'Aufgabe ändern';
+                
+        const task = state.tasks.find(task => task.id === taskID);
+        elements.taskForm.title.value = task.title;
+        elements.taskForm.employee.value = task.employee;
+        elements.taskForm.startDate.value = task.startDate;
+        elements.taskForm.endDate.value = task.endDate;
+        elements.taskForm.description.value = task.description;
+
+        elements.taskForm.dataset.id = taskID;
+        elements.taskForm.addEventListener('submit', updateTask, {once: true});
+    },
+    /**
      * Überprüft ob und welcher Task-Button (Details, Bearbeiten, Löschen) geklickt wurde.
-     * Wenn ja, ruft die passende Funktion auf.
-     * Übergibt ID der Task an die jeweilige Funktion.
+     * Liest dann die Task-ID aus dem Button aus und ruft die zugehörige Funktion auf.
      * @param {Event} e - Click-Event des Kalender-Containers
      */
     handleTaskButtonsClick(e){
@@ -56,8 +83,7 @@ const taskEvents = {
                 deleteTask(taskID);
                 break;
             case 'editButton':
-                //platzhalter für Edit Funktion
-                console.log('edit button geklickt');
+                taskEvents.handleEditTask(taskID);
                 break;
             case 'detailsButton':
                 //platzhalter für Details Funktion
@@ -65,6 +91,6 @@ const taskEvents = {
                 break;
         }   
     }
-}
+};
 
 export default taskEvents;

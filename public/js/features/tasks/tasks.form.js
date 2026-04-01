@@ -134,14 +134,14 @@ export function createTaskForm(){
         });
 
         // --- Submit Button ---
-        dom.create({
+        const formSubmitButton = dom.create({
             tagName: 'button',
             classList: ['form-button'],
             type: 'submit',
-            innerText: 'Aufgabe erstellen',
             parent: taskForm
         });
         
         elements.taskForm = taskForm;
+        elements.formSubmitButton = formSubmitButton;
     };
 
