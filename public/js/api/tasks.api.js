@@ -33,6 +33,7 @@ export async function fetchTasks(){
  * - Als Bestätigung das gespeicherte Objekt zurück geben lassen
  * - State aktualisieren 
  * - Tasks neu rendern
+ * - Modal schließen
  * @param {SubmitEvent} e - Submit-Event des Formulars
  */
 export async function postTask(e){
@@ -63,6 +64,7 @@ export async function postTask(e){
         state.tasks.push(result);
         
         tasksLogic.renderTasks();
+        modalEvents.closeModal();    
     }
     catch(err){
         console.error('Fehler beim Speichern der Aufgabe: ', err);
