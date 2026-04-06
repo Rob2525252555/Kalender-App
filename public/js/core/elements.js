@@ -26,7 +26,12 @@ const elements = {
     
     // Formular um Aufgaben hinzuzufügen oder zu bearbeiten
     taskForm: null,
-    formSubmitButton: null
+    formSubmitButton: null,
+
+    // Detailansicht Buttons
+    taskDetailsViewEditButton: null,
+    taskDetailsViewDeleteButton: null,
+    taskDetailsViewBackButton: null
 };
 
 export default elements;

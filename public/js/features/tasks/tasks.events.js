@@ -3,6 +3,7 @@ import elements from "../../core/elements.js";
 import modalEvents from "../modal/modal.events.js";
 import { createTaskForm } from "./tasks.form.js";
 import state from "../../core/state.js";
+import { createTaskDetailsView } from "./tasks.details.view.js";
 
 /**
  * @module tasks.events
@@ -67,6 +68,29 @@ const taskEvents = {
         elements.taskForm.addEventListener('submit', updateTask, {once: true});
     },
     /**
+     * Ruft die Detailansicht einer Task auf und initialisert die zugehörigen Buttons.
+     * Ablauf:
+     * - Task anhand der ID im State finden
+     * - Modal öffnen
+     * - Die Detailansicht der Task rendern
+     * - Event-Listener für Bearbeiten-Button hinzufügen
+     * - Event-Listener für Löschen-Button hinzufügen
+     * - Event-Listener für zurück-Button anhängen
+     * @param {string} taskID - ID der Task, deren Details angezeigt werden
+     */
+    handleDetailsTask(taskID){
+        const task = state.tasks.find(task => task.id === taskID);
+        
+        modalEvents.openModal();
+        createTaskDetailsView(task);
+        elements.taskDetailsViewEditButton.addEventListener('click', () => taskEvents.handleEditTask(taskID));
+        elements.taskDetailsViewDeleteButton.addEventListener('click', async () => {
+            await deleteTask(taskID);
+            modalEvents.closeModal();
+        });
+        elements.taskDetailsViewBackButton.addEventListener('click', modalEvents.closeModal);      
+    },
+    /**
      * Überprüft ob und welcher Task-Button (Details, Bearbeiten, Löschen) geklickt wurde.
      * Liest dann die Task-ID aus dem Button aus und ruft die zugehörige Funktion auf.
      * @param {Event} e - Click-Event des Kalender-Containers
@@ -87,8 +111,7 @@ const taskEvents = {
                 taskEvents.handleEditTask(taskID);
                 break;
             case 'detailsButton':
-                //platzhalter für Details Funktion
-                console.log('detailsButton geklickt');
+                taskEvents.handleDetailsTask(taskID);
                 break;
         }   
     }
