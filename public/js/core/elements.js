@@ -25,6 +25,7 @@ const elements = {
     modalContent: null,   
     
     // Formular um Aufgaben hinzuzufügen oder zu bearbeiten
+    taskFormHeadline: null,
     taskForm: null,
     formSubmitButton: null,
 

@@ -30,12 +30,14 @@ const taskEvents = {
     /**
      * Öffnet das Modal.
      * Rendert Formular um Aufgaben hinzuzufügen.
+     * Text von Überschrift und Submit-Button anpassen.
      * Ruft beim Submit des Formulars die API Funktion postTask auf, um die Aufgabe zu speichern.
      * Submit Listener wird nur einmal ausgeführt {once: true}.
      */
     handleAddTask(){
         modalEvents.openModal();
         createTaskForm();
+        elements.taskFormHeadline.innerText = 'Aufgabe erstellen';
         elements.formSubmitButton.innerText = 'Aufgabe erstellen';
         elements.taskForm.addEventListener('submit', postTask, {once: true});
     },
@@ -43,7 +45,7 @@ const taskEvents = {
      * Bereitet alles zum Ändern einer Task vor.
      * Ablauf:
      * - Modal öffnen und Formular darin rendern
-     * - Text auf Submit-Button anpassen
+     * - Text von Überschrift und Submit-Button anpassen
      * - Die zugehörige Task anhand der ID im State finden
      * - Die aktuellen Werte der Task ins Formular eintragen
      * - Die ID der Task im Formular speichern als Dataset-Attribut
@@ -55,6 +57,7 @@ const taskEvents = {
         modalEvents.openModal();
         createTaskForm();
 
+        elements.taskFormHeadline.innerText = 'Aufgabe bearbeiten';
         elements.formSubmitButton.innerText = 'Aufgabe ändern';
                 
         const task = state.tasks.find(task => task.id === taskID);

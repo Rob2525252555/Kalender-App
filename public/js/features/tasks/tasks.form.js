@@ -10,6 +10,26 @@ export function createTaskForm(){
             parent: elements.modalContent
         });
 
+        // ----- Überschrift und Hinweis für Pflichtfelder -----
+
+        const taskFormHeaderContainer = dom.create({
+            tagName: 'div',
+            parent: taskForm
+        });
+
+        const taskFormHeadline = dom.create({
+            tagName: 'h2',
+            classList: ['task-form-headline'],
+            innerText: 'Beispielüberschrift',
+            parent: taskFormHeaderContainer
+        });
+
+        dom.create({
+            tagName: 'p',
+            innerText: 'Pflichtfelder sind mit * markiert.',
+            parent: taskFormHeaderContainer
+        });
+
         // --- Titel ---
         const taskFormGroup1 = dom.create({
             tagName: 'div',
@@ -20,7 +40,7 @@ export function createTaskForm(){
         dom.create({
             tagName: 'label',
             classList: ['task-form-label'],
-            innerText: 'Titel',
+            innerText: 'Titel *',
             htmlFor: 'taskTitle',
             parent: taskFormGroup1
         });
@@ -45,7 +65,7 @@ export function createTaskForm(){
         dom.create({
             tagName: 'label',
             classList: ['task-form-label'],
-            innerText: 'Mitarbeiter',
+            innerText: 'Mitarbeiter *',
             htmlFor: 'taskEmployee',
             parent: taskFormGroup2
         });
@@ -70,7 +90,7 @@ export function createTaskForm(){
         dom.create({
             tagName: 'label',
             classList: ['task-form-label'],
-            innerText: 'Startdatum',
+            innerText: 'Startdatum *',
             htmlFor: 'taskStart',
             parent: taskFormGroup3
         });
@@ -95,7 +115,7 @@ export function createTaskForm(){
         dom.create({
             tagName: 'label',
             classList: ['task-form-label'],
-            innerText: 'Enddatum',
+            innerText: 'Enddatum *',
             htmlFor: 'taskEnd',
             parent: taskFormGroup4
         });
@@ -141,6 +161,8 @@ export function createTaskForm(){
             parent: taskForm
         });
         
+        // Referenzen in elements speichern
+        elements.taskFormHeadline = taskFormHeadline;
         elements.taskForm = taskForm;
         elements.formSubmitButton = formSubmitButton;
     };
