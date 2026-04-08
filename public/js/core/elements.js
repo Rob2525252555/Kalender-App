@@ -31,7 +31,10 @@ const elements = {
     // Detailansicht Buttons
     taskDetailsViewEditButton: null,
     taskDetailsViewDeleteButton: null,
-    taskDetailsViewBackButton: null
+    taskDetailsViewBackButton: null,
+
+    // Toast Container
+    toastContainer: null
 };
 
 export default elements;

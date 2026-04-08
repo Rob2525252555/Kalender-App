@@ -1,0 +1,70 @@
+/* ===================================
+   Toast
+=================================== */
+
+:root {
+    /* Standard-Hintergrund für den Toast */
+    --color-bg: rgba(50,50,50,0.9);
+
+    /* Schriftfarbe in Toast */
+    --color-font: rgba(255,255,255,1);
+
+    /* Randfarbe für Toast */
+    --color-border: rgba(255,255,255,1);
+
+    /* Schatten für Toast */
+    --color-shadow: rgba(0, 0, 0, 0.2);
+
+    /* Spezielle Farben für den Toast-Hintergrund */
+    --color-bg-success: rgb(88, 204, 88,1); /* Grün für Erfolgsmeldungen */
+    --color-bg-error: rgba(220,50,50,1);    /* Rot für Fehlermeldung */
+    --color-bg-info: rgba(50,50,50,0.9);    /* Dunkelgrau für Info */
+}
+
+/* Toast-Container:
+    Alle Toasts werden oben rechts gerendert und gestapelt */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column-reverse; /* neuer Toast oben */
+    gap: 10px;
+    z-index: 1001; /* Index 1 höher als Modal-Overlay*/
+}
+
+/* Der Toast selbst:
+    Größe, Farbe, Schatten und Animation */
+.toast {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid var(--color-border);
+    color: var(--color-font);
+    font-weight: bold;
+    box-shadow: 0 4px 12px var(--color-shadow);
+    background-color: var(--color-bg);
+    pointer-events: none; /* Toast verhindert keine Klicks auf Elemente dahinter */
+
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95); /* 20px nach oben verschoben und etwas kleiner */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* sanftes Einblenden und Ausblenden */
+}
+
+/* Zustand nach dem Einblenden */
+.toast.show {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+}
+
+/* Grüner Hintergrund bei Erfolgsmeldungen */
+.toast--success {
+    background-color: var(--color-bg-success);
+}
+/* Roter Hintergrund bei Fehlermeldung */
+.toast--error {
+    background-color: var(--color-bg-error);
+}
+/* Dunkelgrauer Hintergrund für neutrale Info */
+.toast--info {
+    background-color: var(--color-bg-info);
+}

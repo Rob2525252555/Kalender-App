@@ -2,6 +2,7 @@ import state from "../core/state.js";
 import tasksLogic from "../features/tasks/tasks.logic.js";
 import elements from "../core/elements.js";
 import modalEvents from "../features/modal/modal.events.js";
+import { showToast } from "../features/toast/toast.js";
 
 const BASE_URL = '/api/tasks';
 
@@ -34,6 +35,7 @@ export async function fetchTasks(){
  * - State aktualisieren 
  * - Tasks neu rendern
  * - Modal schließen
+ * - Toast für Erfolgs- oder Fehlermeldung anzeigen
  * @param {SubmitEvent} e - Submit-Event des Formulars
  */
 export async function postTask(e){
@@ -64,10 +66,13 @@ export async function postTask(e){
         state.tasks.push(result);
         
         tasksLogic.renderTasks();
-        modalEvents.closeModal();    
+        modalEvents.closeModal();
+        
+        showToast('Aufgabe erfolgreich erstellt', 'success');
     }
     catch(err){
         console.error('Fehler beim Speichern der Aufgabe: ', err);
+        showToast('Fehler beim Erstellen der Aufgabe', 'error');
     }    
 }
 /**
@@ -78,6 +83,7 @@ export async function postTask(e){
  * - API-Call durchführen um Task im Backend zu ändern
  * - Aktualisierte Task vom Backend erhalten und den State damit aktualisieren
  * - Tasks neu rendern und Modal schließen
+ * - Toast für Erfolgs- oder Fehlermeldung anzeigen
  * @param {SubmitEvent} e - Submit-Event des Formulars
  */
 export async function updateTask(e){
@@ -110,8 +116,10 @@ export async function updateTask(e){
     tasksLogic.renderTasks();
 
     modalEvents.closeModal();
+    showToast('Aufgabe erfolgreich geändert', 'success');
     }catch(err){
         console.error('Fehler beim Ändern der Aufgabe: ', err);
+        showToast('Fehler beim Ändern der Aufgabe', 'error');
     }
 }
 /**
@@ -121,6 +129,7 @@ export async function updateTask(e){
  * - Task wird aus dem State gelöscht
  * - Task-Element Wird aus der UI gelöscht
  * - Referenz der Task wird aus elements.tasksElements entfernt
+ * - Toast für Erfolgs- oder Fehlermeldung anzeigen
  * @param {string} taskID - ID der Task, die gelöscht wird 
  */
 export async function deleteTask(taskID){
@@ -141,8 +150,10 @@ export async function deleteTask(taskID){
         });
 
         elements.tasksElements = elements.tasksElements.filter(el => el.id !== taskID);
+        showToast('Aufgabe erfolgreich gelöscht', 'success');
     }
     catch(err){
         console.error('Fehler beim Löschen der Aufgabe: ', err)
+        showToast('Fehler beim Löschen der Aufgabe', 'error');
     }  
 }
