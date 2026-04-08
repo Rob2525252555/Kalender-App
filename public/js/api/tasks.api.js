@@ -30,6 +30,7 @@ export async function fetchTasks(){
  * Speichert eine neue Task im Backend und aktualisiert den State und UI.
  * Ablauf:
  * - Daten aus dem Formular extrahieren und in Objekt umwandeln
+ * - Überprüfen ob Enddatum vor dem Startdatum liegt und zeige Fehlermeldung an
  * - Daten in Json umwandeln und im Backend speichern
  * - Als Bestätigung das gespeicherte Objekt zurück geben lassen
  * - State aktualisieren 
@@ -46,7 +47,12 @@ export async function postTask(e){
     // Einträge aus Formular in Objekt umwandeln
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    
+
+    if(new Date(data.startDate) > new Date(data.endDate)){
+        showToast('Das Enddatum darf nicht vor dem Startdatum liegen', 'error');
+        return;
+    }
+
     try{
         const res = await fetch(BASE_URL, {
             method: 'POST',
@@ -73,12 +79,14 @@ export async function postTask(e){
     catch(err){
         console.error('Fehler beim Speichern der Aufgabe: ', err);
         showToast('Fehler beim Erstellen der Aufgabe', 'error');
+        
     }    
 }
 /**
  * Ändert eine vorhandene Task im Backend und aktualisiert die UI.
  * Ablauf:
  * - Einträge des Formulars auslesen und in Objekt umwandeln
+ * - Überprüfen ob Enddatum vor dem Startdatum liegt und zeige Fehlermeldung an
  * - ID der zugehörigen Task aus dem Formular auslesen
  * - API-Call durchführen um Task im Backend zu ändern
  * - Aktualisierte Task vom Backend erhalten und den State damit aktualisieren
@@ -94,6 +102,11 @@ export async function updateTask(e){
     
     const formData =  new FormData(form);
     const data = Object.fromEntries(formData.entries());
+
+    if(new Date(data.startDate) > new Date(data.endDate)){
+        showToast('Das Enddatum darf nicht vor dem Startdatum liegen', 'error');
+        return;
+    }
 
     const taskID = form.dataset.id;
     
