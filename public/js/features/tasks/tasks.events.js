@@ -58,7 +58,7 @@ const taskEvents = {
         createTaskForm();
 
         elements.taskFormHeadline.innerText = 'Aufgabe bearbeiten';
-        elements.formSubmitButton.innerText = 'Aufgabe ändern';
+        elements.formSubmitButton.innerText = 'Aufgabe bearbeiten';
                 
         const task = state.tasks.find(task => task.id === taskID);
         elements.taskForm.title.value = task.title;
