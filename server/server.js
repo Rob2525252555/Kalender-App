@@ -8,7 +8,25 @@ import crypto from 'crypto';
 // --- Pfad zur JSON-Datei ermitteln ---
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const DATA_TASKS_PATH = path.join(__dirname, '../data/tasks.json');
+const DATA_DIR = path.join(__dirname, '../data');
+const DATA_TASKS_PATH = path.join(DATA_DIR, 'tasks.json');
+
+
+// --- Sicherstellen, dass Ordner data und JSON-Datei tasks.json existieren ---
+try {
+  // Prüfen ob Ordner existiert, wenn nicht -> erstellen
+  await fs.promises.mkdir(DATA_DIR, { recursive: true });
+
+  // Prüfen ob Datei existiert, wenn nicht -> erstellen
+  try{
+      await fs.promises.access(DATA_TASKS_PATH)
+  }catch{
+      await fs.promises.writeFile(DATA_TASKS_PATH, '[]', 'utf-8');
+  }
+
+} catch (err) {
+  console.error('Fehler beim Erstellen des Ordners oder der Datei:', err);
+}
 
 const app = express();
 const PORT = process.env.PORT || 8080;
