@@ -58,6 +58,7 @@ import elements from "../../core/elements.js"
             tagName: 'span',
             classList: ['taskTitle'],
             innerText: task.title,
+            title: task.title,
             parent: taskHeader
         })
 
