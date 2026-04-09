@@ -253,10 +253,19 @@ header {
 .taskTitle{
     font-weight: bold;
     font-size: 14px;
-    overflow-wrap: break-word; /* Wortumbruch erlauben */
-    word-break: normal;     /* bei extrem langen Wörtern */
+
     flex: 1;
-    flex-shrink: 1;             /* Container darf schrumpfen */  
+    min-width: 0;
+    max-width: 100%;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;      
+    -webkit-box-orient: vertical;  
+
+    overflow-wrap: break-word;
+
+    overflow: hidden;  
 }
 
 .taskEmployee{
