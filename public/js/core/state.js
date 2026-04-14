@@ -1,11 +1,16 @@
+/**
+ * @module state
+ * Zentraler Zustand der App.
+ * Speichert alle Tasks, sowie aktuell ausgewähltes Jahr und Monat.
+ */
+
 const today = new Date();
 
 const state ={
+    // Alle Tasks 
     tasks: [],
-    today,
     selectedYear: today.getFullYear(),
-    selectedMonth: today.getMonth(),
-    selectedDay: today.getDay()
+    selectedMonth: today.getMonth()
 };
 
 export default state;
