@@ -1,14 +1,26 @@
+/**
+ * @module elements
+ * 
+ * Sammlung von DOM-Elementen.
+ * Hier werden die Referenzen aller wichtigen DOM-Elemente gespeichert.
+ */
+
 const elements = {
     mainContainer: null,
+
+    // Header und Headerelemente
     header: null,
     btnArrowLeft: null,
     btnArrowRight: null,
     addTaskButton: null,
     currentMonthAndYear: null,
+
+    // Container, in dem der Kalender gerendert wird
     calendarMainContainer: null,
     
     // Alle Kalenderzellen
     calendarCells: [],
+    // Container für die Tageszahlen in den Kalenderzellen
     dayNumberContainer: [],
 
     // Kalenderzellen
@@ -16,7 +28,7 @@ const elements = {
     greyCellsLastMonth: [],
     greyCellsNextMonth: [],
 
-    // Array um die Aufgaben zu speichern
+    // Array um die Referenzen der gerenderten Aufgaben zu speichern
     tasksElements: [],
 
     // Overlay und Modal
@@ -29,12 +41,12 @@ const elements = {
     taskForm: null,
     formSubmitButton: null,
 
-    // Detailansicht Buttons
+    // Buttons in der Detailansicht
     taskDetailsViewEditButton: null,
     taskDetailsViewDeleteButton: null,
     taskDetailsViewBackButton: null,
 
-    // Toast Container
+    // Container für den Toast
     toastContainer: null
 };
 
