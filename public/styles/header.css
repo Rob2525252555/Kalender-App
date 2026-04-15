@@ -1,0 +1,80 @@
+/* ===================================
+   Header
+=================================== */
+header {
+    height: 100px;
+    background-color: var(--color-header);
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
+
+/* Container in dem sich Container für Jahr/Monat und Buttons befinden*/
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    height: 35px;
+    margin-left: 50px;
+    margin-right: 50px;  
+}
+
+/* Container für Monat/Jahr Anzeige und "Aufgabe hinzufügen"-Button*/
+.monthAndTaskContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Abstand "Aufgabe hinzufügen" - Button zur Monats/Jahresanzeige*/
+.addTaskContainer {
+    margin-top: 10px;
+}
+
+/* Container für Monats/Jahres anzeige*/
+.currentMonthAndYear{
+    display: flex;
+    align-items: center;  
+    color: var(--color-header-font);
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/*--------------------- Header-Buttons ------------------*/
+.addTaskButton {
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--color-bg-newTask);
+    color: var(--color-newTaskButton-font);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.addTaskButton:hover {
+    background-color: var(--color-bg-newTask-hover);
+    transform: scale(1.05);
+}
+
+.prevMonth, .nextMonth {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--color-bg-navigationButtons);
+    color: var(--color-navigationButtons);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.prevMonth:hover, .nextMonth:hover {
+    background-color: var(--color-bg-navigationButtons-hover);
+    transform: scale(1.1);
+}

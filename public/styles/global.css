@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column; /* Header oben, Footer unten, Body dazwischen */
+    height: 100vh;          /* Main füllt den gesamten Viewport */
+    height: 100dvh;         /* Fallback für mobile Geräte*/
+}

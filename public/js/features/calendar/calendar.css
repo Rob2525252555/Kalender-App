@@ -1,0 +1,70 @@
+/* ===================================
+   Kalender-Grid
+=================================== */
+.calendarMainContainer {
+    flex: 1 1 auto;          /* nimmt den restlichen Platz ein */
+    overflow-y: auto;        /* Scrollbar bei Bedarf */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: var(--color-bg-calendarGrid);
+    gap: 10px;
+}
+
+/*------------------- Wochentage-Zeile -------------------*/
+.weekdaysRowContainer {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color-bg-calendarRows);
+}
+
+/* Wochentage */
+.weekdaysCellsContainer{
+    flex: 1; /* alle Zellen gleich breit */
+    display: flex;
+    justify-content: center;
+    margin: 2px;
+    background-color: var(--color-bg-calendarCells);
+
+}
+
+/* Wochentag Text*/
+.weekdayText{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*------------------- Kalender-Zeilen und Zellen -------------------*/
+.calendarRowContainer {
+    flex: 1; 
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color-bg-calendarRows);
+}
+
+/* Kalender-Zellen */
+.calendarCellsContainer {
+    flex: 1; /* alle Zellen gleich breit */
+    margin: 2px;
+    background-color: var(--color-bg-calendarCells);
+
+    border-radius: 6px;
+    padding: 4px;
+    display: flex;
+    flex-direction: column; /* Aufgaben untereinander */
+    gap: 4px; /* Abstand zwischen Aufgaben */
+
+    min-width: 0; /*Kalender behält dadurch seine Form, wenn man Fenster verkleinert*/
+}
+/* Tageszahl in die Zelle eintragen*/
+.dayNumbers{
+    font-weight: bold;
+}
+/* Aktuellen Tag markieren */
+.currentDay {
+    box-shadow: 0 0 0 3px var(--color-border-currentDay);
+}
+/* Zellen des letzten und nächsten Monats ausgrauen*/
+.greyCell{
+    background-color: darkgrey;
+}

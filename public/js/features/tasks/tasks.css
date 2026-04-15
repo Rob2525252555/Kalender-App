@@ -1,0 +1,65 @@
+/* ===================================
+   Tasks
+=================================== */
+
+/* Container für jede Task */
+.task {
+    background-color: var(--color-bg-tasks); 
+    padding: 4px 6px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column; /* Titel oben, Mitarbeiter unten */
+    gap: 4px;
+    box-shadow: 0 1px 3px var(--color-boxShadow-tasks);
+}
+
+.task:hover{
+    background-color: var(--color-bg-tasks-hover);
+    box-shadow: 0 3px 6px var(--color-boxShadow-tasks-hover); 
+}
+
+/* Für Task-Title und Buttons (Details, Bearbeiten, Löschen) */
+.taskHeader {
+    display: flex;
+    justify-content: space-between; /* Titel links, Buttons rechts */
+    align-items: flex-start;
+}
+
+.taskButtons button {
+    margin-left: 4px; /* Abstand zwischen Buttons */
+    padding: 2px 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.taskTitle{
+    font-weight: bold;
+    font-size: 14px;
+
+    flex: 1;
+    min-width: 0;
+    max-width: 100%;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;      
+    -webkit-box-orient: vertical;  
+
+    overflow-wrap: break-word;
+
+    overflow: hidden;  
+}
+
+.taskEmployee{
+    color: var(--color-taskEmployee-font);
+    overflow-wrap: break-word;
+}
+
+.endDateTask{
+    background-color: var(--color-bg-endDateTask);
+}
+
+.endDateTask:hover{
+    background-color: var(--color-bg-endDateTask-hover);
+    box-shadow: 0 3px 6px var(--color-boxShadow-tasks-hover); 
+}
