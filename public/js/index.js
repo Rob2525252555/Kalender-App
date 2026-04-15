@@ -8,23 +8,29 @@ import { createModal } from "./features/modal/modal.view.js";
 import modalEvents from "./features/modal/modal.events.js";
 import taskEvents from "./features/tasks/tasks.events.js";
 
+/** 
+ * Entry Point für die App 
+ * Initialisiert State, Layout mit Modal, Logik und Events
+*/
+
 const init = async () => {
     try {
-        // tasks in den state laden
+        // Daten laden
         state.tasks = await fetchTasks();
+
+        // Layout und Modal erstellen
         renderCalendar();
-
-        taskEvents.init();
-
         createModal();
-        modalEvents.init();
 
+        // Logik initialisieren
         calendarLogic.renderThisMonth(state.selectedYear, state.selectedMonth);
-        calendarEvents.init();
-
         tasksLogic.renderTasks();
 
-        
+        // Events registrieren
+        calendarEvents.init();
+        modalEvents.init();
+        taskEvents.init();
+         
     } catch (err) {
         console.error("Init fehlgeschlagen:", err);
     }
