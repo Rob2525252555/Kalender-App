@@ -1,9 +1,18 @@
 import dom from "../../core/dom.js";
 import elements from "../../core/elements.js";
 
+/**
+ * @module tasks.form
+ * Rendert eine Formular um Aufgaben hinzuzufügen oder zu bearbeiten.
+ * Aufgaben:
+ * - Rendert das Formular mit den Inputs (Titel, Mitarbeiter, Startdatum, Enddatum und Beschreibung)
+ * - Markiert Titel, Mitarbeiter, Startdatum und Enddatum als Pflichtfeld
+ * - Rendert Submit-Button
+ * - Speichert Referenzen von Überschrift-Container, Formular und Submit-Button in elements 
+ * */
+
 export function createTaskForm(){
-        
-        // Task Formular erstellen und in elements speichern
+    
         const taskForm = dom.create({
             tagName: 'form',
             classList: ['task-form'],
@@ -20,7 +29,6 @@ export function createTaskForm(){
         const taskFormHeadline = dom.create({
             tagName: 'h2',
             classList: ['task-form-headline'],
-            innerText: 'Beispielüberschrift',
             parent: taskFormHeaderContainer
         });
 
