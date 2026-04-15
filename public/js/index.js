@@ -1,7 +1,6 @@
 import state from "./core/state.js"
 import { fetchTasks } from "./api/tasks.api.js";
 import { renderCalendar } from "./features/calendar/calendar.view.js";
-import dates from "./utils/dates.js"
 import calendarLogic from "./features/calendar/calendar.logic.js";
 import calendarEvents from "./features/calendar/calendar.events.js";
 import tasksLogic from "./features/tasks/tasks.logic.js";
@@ -19,8 +18,6 @@ const init = async () => {
 
         createModal();
         modalEvents.init();
-
-        dates.setDate();
 
         calendarLogic.renderThisMonth(state.selectedYear, state.selectedMonth);
         calendarEvents.init();

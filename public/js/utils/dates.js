@@ -1,51 +1,51 @@
-    /**
-     * @module dates
-     * Hilfsmodul für alle wichtigen Datumsinformationen
-     * 
-     * Stellt Arrays für Monate und Wochentage bereit, sowie Funktionen,
-     * um aktuelle Datumsinformationen sowie Kalenderzellen im Grid zu berechnen.
-     */
+/**
+ * @module dates
+ * Hilfsmodul für alle wichtigen Datumsinformationen
+ * 
+ * Stellt Arrays für Monate und Wochentage bereit, sowie Funktionen,
+ * um aktuelle Datumsinformationen sowie Kalenderzellen im Grid zu berechnen.
+ */
 
-const dates ={
+const dates = {
 
     /**
-     * Arrays mit den Monaten, um diese dynamisch anhand eines Index zu verwenden.
+     * Array mit den Monaten, um diese dynamisch anhand eines Index zu verwenden.
      * @type {string[]}
      */
-    months: ["Januar" ,"Februar", "März", "April", "Mai",
-         "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+    months: ["Januar", "Februar", "März", "April", "Mai",
+        "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
 
     /**
      * Array mit den Wochentagen, um diese dynamisch anhand eines Index zu verwenden.
      * @type {string[]}
      */
-    days: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],  
+    days: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
 
     /**
-     * Setzen aller grundlegenden Datumsinformationen und speichere diese im Objekt:
-     * Heutiges Datum @type {Date}
-    * Heutiger Tag @type {number}
-     * Heutiger Wochentag als Index (0-6, 0 = Sonntag, 1 = Montag usw.) @type {number}
-    * Aktueller Monat als Index (0-11, 0 = Januar, 1 = Februar usw.) @type {number}
-    * Aktuelle Jahreszahl @type {number}
-    */
-        
-    setDate(){
-        // heutiges Datum
-        const today = new Date();
-        dates.today = today;
+     * @typedef DateInfo
+     * @property {Date} date - heutiges Datum
+     * @property {number} day - heutiger Tag im Monat
+     * @property {number} weekday - Wochentag (0 = Sonntag, 6 = Samstag)
+     * @property {number} month - Monat (0–11)
+     * @property {number} year - Jahreszahl
+     */
 
-        // heutiger Tag
-        dates.dayToday = today.getDate();
-        
-        // heutiger Wochentag (0-6, 0 = Sonntag, 1 = Montag usw.)
-        dates.currentWeekday = today.getDay();
-        
-        // aktueller Monat als Index (0-11)
-        dates.currentMonth = today.getMonth();
-        
-        // aktuelles Jahr ermitteln
-        dates.currentYear = today.getFullYear();     
+    /**
+     * Gibt alle grundlegenden Datumsinformationen zurück.
+     *
+     * @returns {DateInfo}
+     */
+
+    getDate() {
+        const now = new Date();
+
+        return {
+            date: now,
+            day: now.getDate(),
+            weekday: now.getDay(),
+            month: now.getMonth(),
+            year: now.getFullYear()
+        };
     },
 
     /**
@@ -55,8 +55,8 @@ const dates ={
      * @param {number} month - Monat als Index (0-11)
      * @returns {number} - Index (0-6) des Wochentags
      */
-    getFirstWeekdayThisMonth(year, month){  
-        const firstDayMonth = new Date(year, month, 1);  
+    getFirstWeekdayThisMonth(year, month) {
+        const firstDayMonth = new Date(year, month, 1);
         return firstDayMonth.getDay();
     },
 
@@ -67,8 +67,8 @@ const dates ={
      * @param {number} month - Monat als Index (0-11)
      * @returns {number} - Anzahl der Tage des ausgewählten Monats
      */
-    getDaysThisMonth(year, month){
-        return new Date(year, month+1,0).getDate();
+    getDaysThisMonth(year, month) {
+        return new Date(year, month + 1, 0).getDate();
     },
 
     /**
@@ -78,9 +78,9 @@ const dates ={
      * @param {number} month - Monat als Index (0-11)
      * @returns {number} - Index der ersten Kalenderzelle im Kalender Grid 
      */
-    getFirstCalendarCell(year,month){
-        if(dates.getFirstWeekdayThisMonth(year,month)===0) return 7;
-        return (dates.getFirstWeekdayThisMonth(year,month));
+    getFirstCalendarCell(year, month) {
+        if (dates.getFirstWeekdayThisMonth(year, month) === 0) return 7;
+        return (dates.getFirstWeekdayThisMonth(year, month));
     },
 
     /**
@@ -90,9 +90,9 @@ const dates ={
      * @param {number} month - Monat als Index (0-11)
      * @returns {number} - Index der letzten kalenderzelle im Kalender Grid
      */
-    getLastCalendarCell(year, month){
-        let firstCell = dates.getFirstCalendarCell(year,month);
-        return (firstCell + dates.getDaysThisMonth(year,month) -1 );
+    getLastCalendarCell(year, month) {
+        let firstCell = dates.getFirstCalendarCell(year, month);
+        return (firstCell + dates.getDaysThisMonth(year, month) - 1);
     },
 
     /**
@@ -102,8 +102,8 @@ const dates ={
      * @param {number} month - Monat als Index (0-11)
      * @returns {number} - Anzahl Kalenderzellen des vorherigen Monats
      */
-    getNumGreyCellsLastMonth(year,month){
-        return(dates.getFirstCalendarCell(year, month)-1);
+    getNumGreyCellsLastMonth(year, month) {
+        return (dates.getFirstCalendarCell(year, month) - 1);
 
     },
     /**
@@ -113,8 +113,8 @@ const dates ={
      * @param {number} month - Monat als Index (0-11)
      * @returns {number} - Anzahl Kalenderzellen des Folgemonats
      */
-    getNumGreyCellsNextMonth(year, month){
-        return (42-dates.getLastCalendarCell(year, month));
+    getNumGreyCellsNextMonth(year, month) {
+        return (42 - dates.getLastCalendarCell(year, month));
     }
 }
 

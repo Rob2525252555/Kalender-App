@@ -75,6 +75,8 @@ const calendarLogic = {
      * @param {number} month - Ausgewählter Monat (0-11)
      */
     setupCalendarCells(year,month){
+        // aktuelle Datumsinformationen ermitteln
+        const today = dates.getDate();
 
         // Arrays zum Speichern der Zellen des letzten, aktuellen und nächsten Monats
         let greyCellsLastMonth = [];
@@ -105,8 +107,8 @@ const calendarLogic = {
         }
 
         // Aktueller Tag markieren, nur wenn aktueller Monat angezeigt wird
-        if (year === dates.currentYear && month === dates.currentMonth) {
-            const todayIndex = dates.dayToday - 1;
+        if (year === today.year && month === today.month) {
+            const todayIndex = today.day - 1;
             cellsThisMonth[todayIndex].classList.add('currentDay');
         }           
 
