@@ -6,10 +6,7 @@
  */
 
 const elements = {
-    mainContainer: null,
-
-    // Header und Headerelemente
-    header: null,
+    // Headerelemente
     btnArrowLeft: null,
     btnArrowRight: null,
     addTaskButton: null,

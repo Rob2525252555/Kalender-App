@@ -25,6 +25,10 @@ export function renderCalendar(){
          * Footer
          */
 
+        // Arrays für Kalenderzellen resetten
+        elements.calendarCells = [];
+        elements.dayNumberContainer = [];
+
         const NUMBER_OF_WEEKDAYS = 7;
 
         // Text für die Wochentage aus dates.js 
@@ -35,9 +39,6 @@ export function renderCalendar(){
 
          // Text der Footerlinks
         const footerTexts = ['Impressum', 'Kontakt', 'Datenschutz'];
-  
-        // Zähler für Kalender-Zellen
-        let counter = 1;
 
         // ----------------------------------------
         // Hauptcontainer
@@ -46,10 +47,9 @@ export function renderCalendar(){
         /**Hauptcontainer in den alles Elemente eingehängt werden*/
         const mainContainer = dom.create({
             tagName: 'div',
-            id: 'mainContainer',
             classList: ['mainContainer'],
             parent: document.body
-        })
+        });
 
         // ----------------------------------------
         // Header mit Monatsnavigation
@@ -57,63 +57,55 @@ export function renderCalendar(){
 
         const header = dom.create({
             tagName: 'header',
-            id: 'header',
             parent: mainContainer
-        })
+        });
 
         /** Container für Navigationsbuttons und Monat/Jahr Anzeige */
         const headerContainer = dom.create({
             tagName: 'div',
-            id: 'headerContainer',
             classList: ['headerContainer'],
             parent: header
-        })
+        });
 
         const btnArrowLeft = dom.create({
             tagName: 'button',
-            id: 'btnArrowLeft',
             innerText: '◀',
             classList: ['prevMonth'],
             parent: headerContainer
-        })
+        });
 
         const monthAndTaskContainer = dom.create({
             tagName: 'div',
-            id: 'monthAndTaskContainer',
             classList: ['monthAndTaskContainer'],
             parent: headerContainer
-        })
+        });
 
         const btnArrowRight = dom.create({
             tagName: 'button',
-            id: 'btnArrowRight',
             innerText: '▶',
             classList: ['nextMonth'],
             parent: headerContainer
-        })
+        });
 
         const currentMonthAndYear = dom.create({
             tagName: 'div',
-            id: 'currentMonthAndYear',
             classList: ['currentMonthAndYear'],
             innerText: 'Monat Jahr',
             parent: monthAndTaskContainer
-        })
+        });
 
         const addTaskContainer = dom.create({
             tagName: 'div',
-            id: 'addTaskContainer',
             classList: ['addTaskContainer'],
             parent:monthAndTaskContainer
-        })
+        });
 
         const addTaskButton =dom.create({
             tagName: 'button',
-            id:'addTaskButton',
             classList: ['addTaskButton'],
             innerText: '+ Neue Aufgabe hinzufügen',
             parent: addTaskContainer
-        })
+        });
 
         // ----------------------------------------
         // Hauptcontainer für den Kalenderbereich
@@ -121,10 +113,9 @@ export function renderCalendar(){
 
         const calendarMainContainer = dom.create({
             tagName: 'div',
-            id: 'calendarMainContainer',
             classList: ['calendarMainContainer'],
             parent: mainContainer
-        })
+        });
 
         // ----------------------------------------
         // Kalender Wochentage (Montag - Sonntag)
@@ -133,28 +124,25 @@ export function renderCalendar(){
         /**Container für die Reihe der Wochentage (Montag-Sonntag) */
         const weekdayRowContainer = dom.create({
             tagName: 'div',
-            id: 'weekdayRowContainer',
             classList: ['weekdaysRowContainer'],
             parent: calendarMainContainer
-        })
+        });
 
-        /**Zellen für die Wochentage und Textinhalt */
+        // Zellen für die Wochentage und Textinhalt 
         for (let i = 0; i < NUMBER_OF_WEEKDAYS; i++) {
 
             const weekdayCellsContainer = dom.create({
                 tagName: 'div',
-                id: `weekdayCellsContainer${i}`,
                 classList: ['weekdaysCellsContainer'],
                 parent: weekdayRowContainer
-            })
+            });
 
-            const weekdayText = dom.create({
+            dom.create({
                 tagName:'div',
-                id:`weekdayText${i}`,
                 classList: ['weekdayText'],
                 innerText: WEEKDAYSTEXT[i],
                 parent: weekdayCellsContainer
-            })
+            });
         }
 
         // ----------------------------------------
@@ -167,10 +155,9 @@ export function renderCalendar(){
             /**Container für die Kalenderzellen pro Reihe */
             const calendarRowContainer = dom.create({
                 tagName: 'div',
-                id: `calendarRowContainer${i}`,
                 classList: ['calendarRowContainer'],
                 parent: calendarMainContainer
-            })
+            });
 
             // 7 Zellen pro Reihe
             for (let j = 0; j < NUMBER_OF_WEEKDAYS; j++) {
@@ -178,25 +165,20 @@ export function renderCalendar(){
                 /** Einzelne Kalenderzelle */
                 const calendarCells = dom.create({
                     tagName: 'div',
-                    id: `calendarCells${counter}`,
                     classList: ['calendarCellsContainer'],
                     parent: calendarRowContainer
-                })
+                });
                 
                 /** Container für Tageszahl */
                 const dayNumberContainer = dom.create({
                     tagName: 'div',
-                    id: `dayNumbers${counter}`,
                     classList: ['dayNumbers'],
                     parent: calendarCells
-                })
+                });
 
-                /** Referenzen der Kalenderzellen und der Tagezahl in elements.js speichern */
+                // Referenzen der Kalenderzellen und der Container für die Tagezahlen in elements.js speichern 
                 elements.calendarCells.push(calendarCells);
                 elements.dayNumberContainer.push(dayNumberContainer);
-
-                // Zähler für Kalenderzellen
-                counter++;
             }      
         }
         // ----------------------------------------
@@ -205,35 +187,30 @@ export function renderCalendar(){
 
         const footer = dom.create({
             tagName: 'footer',
-            id: 'footer',
             parent: mainContainer
-        })
+        });
 
         /**Container für die Footerlinks */
         const footerContainer = dom.create({
             tagName: 'div',
-            id: 'footerContainer',
             classList: ['footerContainer'],
             parent: footer
-        })
+        });
 
         /**Erzeugen der Footerlinks */
         for (let i = 0; i < footerTexts.length; i++) {
 
-            const innerFooterContainer = dom.create({
+            dom.create({
             tagName: 'div',
-            id: `innerFooterContainer${i}`,
             innerText: footerTexts[i],
             classList: ['innerFooterContainer'],
             parent: footerContainer
-            })   
+            });  
         }
 
         // ----------------------------------------
         // Wichtige DOM-Referenzen speichern 
         // ----------------------------------------
-        elements.mainContainer = mainContainer;
-        elements.header = header;
         elements.btnArrowLeft = btnArrowLeft;
         elements.btnArrowRight = btnArrowRight;
         elements.currentMonthAndYear = currentMonthAndYear;
