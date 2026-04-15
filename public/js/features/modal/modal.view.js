@@ -9,13 +9,9 @@ import elements from "../../core/elements.js";
  * - Rendert ein Overlay
  * - Rendert auf dem Overlay ein Modal
  * - Rendert ein Close-Button im Modal
- * - Speichert die Referenzen von Overlay und Close-Button
+ * - Speichert die Referenzen von Overlay,Modal und Close-Button in elements
  */
 
-    /**
-     * Erstellt das Modal mit Overlay und Close-Button und
-     *  speichert die Referenzen in elements
-     */
    export function createModal(){
    
     const modalOverlay = dom.create({
