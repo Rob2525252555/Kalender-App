@@ -15,19 +15,19 @@ import elements from "../../core/elements.js";
    export function createModal(){
    
     const modalOverlay = dom.create({
-        classList: ["modal-overlay"],
+        classList: ["modal__overlay"],
         parent: document.body
     });
 
     const modalContent = dom.create({
-        classList: ["modal-container"],
+        classList: ["modal__content"],
         parent: modalOverlay
     });
 
     const overlayCloseButton = dom.create({
         tagName: "button",
         innerText: "×",
-        classList: ["modal-close"],
+        classList: ["modal__close"],
         parent: modalContent
     });
 

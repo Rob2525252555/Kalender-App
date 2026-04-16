@@ -1,33 +1,38 @@
 /* ===================================
    Modal
 =================================== */
+:root {
+    --modal-overlay-bg: rgba(0,0,0,0.5);        /* transparenter grauer Hintergrund für das Overlay */
+    --modal-content-bg: rgba(255,255,255,1);    /* Weißer Hintergrund für Inhalt des Modals */
+}
 
-.modal-overlay {
+.modal__overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: var(--modal-overlay-bg);
     display: none; 
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
-.modal-overlay.modal--active {
+.modal__overlay.modal--active {
     display: flex;
 }
 
-.modal-container {
-    background: rgba(255,255,255,1);
+.modal__content {
+    background: var(--modal-content-bg);
     padding: 20px;
     width: 500px;
     max-width: 80%;
     position: relative;
 }
 
-.modal-close {
+/* Close-Button für das Modal */
+.modal__close {
     position: absolute;
     top: 10px;
     right: 10px;
