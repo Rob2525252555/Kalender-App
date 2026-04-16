@@ -1,52 +1,59 @@
 /* ===================================
    Kalender-Grid
 =================================== */
-.calendarMainContainer {
+:root{
+  --calendar-grid-bg: rgba(218, 218, 218, 1);           /* Hellgrauer Hintergrund für Grid */
+  --calendar-rows-bg: rgba(85, 85, 160, 0.36);          /* Leicht transparentes Blau für Reihen */
+  --calendar-cell-bg: rgba(255, 255, 0, 1);             /* Gelb für Zellen */
+  --calendar-current-day-border: rgba(255, 0, 0, 1);    /* Rot für aktuellen Tag */
+  --calendar-grey-cell-bg: rgba(169,169,169,1);         /* Dunkelgrau für Zellen die nicht zu diesem Monat gehören */
+}
+
+.calendar__main {
     flex: 1 1 auto;          /* nimmt den restlichen Platz ein */
     overflow-y: auto;        /* Scrollbar bei Bedarf */
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background-color: var(--color-bg-calendarGrid);
+    background-color: var(--calendar-grid-bg);
     gap: 10px;
 }
 
 /*------------------- Wochentage-Zeile -------------------*/
-.weekdaysRowContainer {
+.calendar__weekday-row {
     display: flex;
     justify-content: space-between;
-    background-color: var(--color-bg-calendarRows);
+    background-color: var(--calendar-rows-bg);
 }
 
 /* Wochentage */
-.weekdaysCellsContainer{
+.calendar__weekday-cell {
     flex: 1; /* alle Zellen gleich breit */
     display: flex;
     justify-content: center;
     margin: 2px;
-    background-color: var(--color-bg-calendarCells);
-
+    background-color: var(--calendar-cell-bg);
 }
 
 /* Wochentag Text*/
-.weekdayText{
+.calendar__weekday-text {
     font-size: 20px;
     font-weight: bold;
 }
 
 /*------------------- Kalender-Zeilen und Zellen -------------------*/
-.calendarRowContainer {
+.calendar__row {
     flex: 1; 
     display: flex;
     justify-content: space-between;
-    background-color: var(--color-bg-calendarRows);
+    background-color: var(--calendar-rows-bg);
 }
 
 /* Kalender-Zellen */
-.calendarCellsContainer {
+.calendar__cell {
     flex: 1; /* alle Zellen gleich breit */
     margin: 2px;
-    background-color: var(--color-bg-calendarCells);
+    background-color: var(--calendar-cell-bg);
 
     border-radius: 6px;
     padding: 4px;
@@ -56,15 +63,15 @@
 
     min-width: 0; /*Kalender behält dadurch seine Form, wenn man Fenster verkleinert*/
 }
-/* Tageszahl in die Zelle eintragen*/
-.dayNumbers{
+/* Container für die Tageszahl */
+.calendar__day-number {
     font-weight: bold;
 }
 /* Aktuellen Tag markieren */
-.currentDay {
-    box-shadow: 0 0 0 3px var(--color-border-currentDay);
+.calendar__current-day {
+    box-shadow: 0 0 0 3px var(--calendar-current-day-border);
 }
 /* Zellen des letzten und nächsten Monats ausgrauen*/
-.greyCell{
-    background-color: darkgrey;
+.calendar__grey-cell{
+    background-color: var(--calendar-grey-cell-bg);
 }

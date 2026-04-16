@@ -113,7 +113,7 @@ export function renderCalendar(){
 
         const calendarMainContainer = dom.create({
             tagName: 'div',
-            classList: ['calendarMainContainer'],
+            classList: ['calendar__main'],
             parent: mainContainer
         });
 
@@ -124,7 +124,7 @@ export function renderCalendar(){
         /**Container für die Reihe der Wochentage (Montag-Sonntag) */
         const weekdayRowContainer = dom.create({
             tagName: 'div',
-            classList: ['weekdaysRowContainer'],
+            classList: ['calendar__weekday-row'],
             parent: calendarMainContainer
         });
 
@@ -133,13 +133,13 @@ export function renderCalendar(){
 
             const weekdayCellsContainer = dom.create({
                 tagName: 'div',
-                classList: ['weekdaysCellsContainer'],
+                classList: ['calendar__weekday-cell'],
                 parent: weekdayRowContainer
             });
 
             dom.create({
                 tagName:'div',
-                classList: ['weekdayText'],
+                classList: ['calendar__weekday-text'],
                 innerText: WEEKDAYSTEXT[i],
                 parent: weekdayCellsContainer
             });
@@ -155,7 +155,7 @@ export function renderCalendar(){
             /**Container für die Kalenderzellen pro Reihe */
             const calendarRowContainer = dom.create({
                 tagName: 'div',
-                classList: ['calendarRowContainer'],
+                classList: ['calendar__row'],
                 parent: calendarMainContainer
             });
 
@@ -165,14 +165,14 @@ export function renderCalendar(){
                 /** Einzelne Kalenderzelle */
                 const calendarCells = dom.create({
                     tagName: 'div',
-                    classList: ['calendarCellsContainer'],
+                    classList: ['calendar__cell'],
                     parent: calendarRowContainer
                 });
                 
                 /** Container für Tageszahl */
                 const dayNumberContainer = dom.create({
                     tagName: 'div',
-                    classList: ['dayNumbers'],
+                    classList: ['calendar__day-number'],
                     parent: calendarCells
                 });
 

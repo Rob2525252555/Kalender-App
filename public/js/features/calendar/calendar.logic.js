@@ -37,14 +37,14 @@ const calendarLogic = {
 
     /**
      * Setzt den Kalender zurück:
-     * - entfernt graue Zellen ('greyCell')
-     * - entfernt Markierung für aktuellen Tag ('currentDay')
+     * - entfernt graue Zellen ('calendar__grey-cell')
+     * - entfernt Markierung für aktuellen Tag ('calendar__current-day')
      * - entfernt Tageszahlen aus allen Zellen
      */
     resetCalendar(){
         // Klassen aus allen Kalenderzellen entfernen
         for (let cell of elements.calendarCells) {
-            cell.classList.remove('greyCell', 'currentDay');
+            cell.classList.remove('calendar__grey-cell', 'calendar__current-day');
         }
 
         // Tageszahlen aus allen Zellen entfernen
@@ -91,7 +91,7 @@ const calendarLogic = {
         // Kalenderzellen des letzten Monats speichern und grau färben
         for (let i = 0; i < numGreyCellsLastMonth; i++) {
             greyCellsLastMonth.push(allCalendarCells[i]);
-            allCalendarCells[i].classList.add('greyCell');  
+            allCalendarCells[i].classList.add('calendar__grey-cell');  
         }
 
         // Kalenderzellen dieses Monats speichern und Tageszahlen eintragen
@@ -103,13 +103,13 @@ const calendarLogic = {
         // Kalenderzellen von nächstem Monat speichern und grau färben
         for (let i = numGreyCellsLastMonth + numDaysThisMonth; i < allCalendarCells.length; i++) {
             greyCellsNextMonth.push(allCalendarCells[i]);
-            allCalendarCells[i].classList.add('greyCell');
+            allCalendarCells[i].classList.add('calendar__grey-cell');
         }
 
         // Aktueller Tag markieren, nur wenn aktueller Monat angezeigt wird
         if (year === today.year && month === today.month) {
             const todayIndex = today.day - 1;
-            cellsThisMonth[todayIndex].classList.add('currentDay');
+            cellsThisMonth[todayIndex].classList.add('calendar__current-day');
         }           
 
         // Zellen des aktuellen, letzten und nächsten Monats in elements.js speichern
