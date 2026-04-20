@@ -57,52 +57,53 @@ export function renderCalendar() {
 
     const header = dom.create({
         tagName: 'header',
+        classList: ['header'],
         parent: mainContainer
     });
 
     /** Container für Navigationsbuttons und Monat/Jahr Anzeige */
     const headerContainer = dom.create({
         tagName: 'div',
-        classList: ['headerContainer'],
+        classList: ['header__content'],
         parent: header
     });
 
     const btnArrowLeft = dom.create({
         tagName: 'button',
         innerText: '◀',
-        classList: ['prevMonth'],
+        classList: ['header__nav-button'],
         parent: headerContainer
     });
 
     const monthAndTaskContainer = dom.create({
         tagName: 'div',
-        classList: ['monthAndTaskContainer'],
+        classList: ['header__info'],
         parent: headerContainer
     });
 
     const btnArrowRight = dom.create({
         tagName: 'button',
         innerText: '▶',
-        classList: ['nextMonth'],
+        classList: ['header__nav-button'],
         parent: headerContainer
     });
 
     const currentMonthAndYear = dom.create({
         tagName: 'div',
-        classList: ['currentMonthAndYear'],
+        classList: ['header__date'],
         innerText: 'Monat Jahr',
         parent: monthAndTaskContainer
     });
 
     const addTaskContainer = dom.create({
         tagName: 'div',
-        classList: ['addTaskContainer'],
+        classList: ['header__new-task-container'],
         parent: monthAndTaskContainer
     });
 
     const addTaskButton = dom.create({
         tagName: 'button',
-        classList: ['addTaskButton'],
+        classList: ['header__new-task-button'],
         innerText: '+ Neue Aufgabe hinzufügen',
         parent: addTaskContainer
     });

@@ -1,16 +1,31 @@
 /* ===================================
    Header
 =================================== */
-header {
+:root {
+  --header-bg: rgba(0, 0, 255, 1);                                  /* Blau für Header-Hintergrund */
+  --header-text: rgba(255, 255, 255, 1);                            /* Weiß für Header-Text */
+
+  /* Navigation-Buttons */
+  --header-navigation-button-bg: rgba(128, 128, 128, 1);            /* Grau für Buttons */
+  --header-navigation-button-bg-hover: rgba(66, 66, 66, 1);         /* Dunkleres Grau beim Hover */
+  --header-navigation-button-text: rgba(255, 255, 255, 1);          /* Weiß für Button-Text */
+
+  /* 'Aufgabe hinzufügen'-Button*/
+  --header-new-task-button-bg: rgba(255,255,255,1);                  /* Weiß für neuen Task Container */
+  --header-new-task-button-bg-hover: rgba(247, 247, 247, 0.8);       /* Leichtes Grau beim Hover */
+  --header-new-task-button-text: rgba(0, 128, 0, 1);                 /* Grüne Schrift für +Neue Aufgabe Button */
+}
+
+.header {
     height: 100px;
-    background-color: var(--color-header);
+    background-color: var(--header-bg);
     display: flex;
     align-items: center;
     justify-content: center;   
 }
 
 /* Container in dem sich Container für Jahr/Monat und Buttons befinden*/
-.headerContainer {
+.header__content {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,51 +37,51 @@ header {
 }
 
 /* Container für Monat/Jahr Anzeige und "Aufgabe hinzufügen"-Button*/
-.monthAndTaskContainer{
+.header__info {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 /* Abstand "Aufgabe hinzufügen" - Button zur Monats/Jahresanzeige*/
-.addTaskContainer {
+.header__new-task-container {
     margin-top: 10px;
 }
 
-/* Container für Monats/Jahres anzeige*/
-.currentMonthAndYear{
+/* Container für Monats/Jahres Anzeige*/
+.header__date{
     display: flex;
     align-items: center;  
-    color: var(--color-header-font);
+    color: var(--header-text);
     font-size: 25px;
     font-weight: bold;
 }
 
 /*--------------------- Header-Buttons ------------------*/
-.addTaskButton {
+.header__new-task-button {
     padding: 6px 14px;
     font-size: 14px;
     font-weight: bold;
     border-radius: 6px;
     border: none;
     cursor: pointer;
-    background-color: var(--color-bg-newTask);
-    color: var(--color-newTaskButton-font);
+    background-color: var(--header-new-task-button-bg);
+    color: var(--header-new-task-button-text);
     transition: background-color 0.2s, transform 0.2s;
 }
 
-.addTaskButton:hover {
-    background-color: var(--color-bg-newTask-hover);
+.header__new-task-button:hover {
+    background-color: var(--header-new-task-button-bg-hover);
     transform: scale(1.05);
 }
 
-.prevMonth, .nextMonth {
+.header__nav-button {
     cursor: pointer;
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    background-color: var(--color-bg-navigationButtons);
-    color: var(--color-navigationButtons);
+    background-color: var(--header-navigation-button-bg);
+    color: var(--header-navigation-button-text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,7 +89,7 @@ header {
     transition: transform 0.2s, background-color 0.2s;
 }
 
-.prevMonth:hover, .nextMonth:hover {
-    background-color: var(--color-bg-navigationButtons-hover);
+.header__nav-button:hover {
+    background-color: var(--header-navigation-button-bg-hover);
     transform: scale(1.1);
 }
