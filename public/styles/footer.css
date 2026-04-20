@@ -1,27 +1,32 @@
 /* ===================================
    Footer
 =================================== */
-footer {
+:root {
+    --footer: rgba(85, 85, 85, 1);                      /* Dunkelgrau für Footer-Hintergrund */
+    --footer-text: rgba(255, 255, 255, 1);              /* Weiß für Footer-Text */
+}
+
+.footer {
     height: 50px;
-    background-color: var(--color-footer);
+    background-color: var(--footer);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 /* Footer-Zeile */
-.footerContainer {
+.footer__container {
     display: flex;
     width: 100%;
     max-width: 400px;
     justify-content: space-between;
     align-items: center;
-    color: var(--color-footer-font);
+    color: var(--footer-text);
     margin-left: 50px;
     margin-right: 50px;
 }
 
 /* Footer-Zellen*/
-.innerFooterContainer {
+.footer__item {
     padding: 0 10px;
 }
