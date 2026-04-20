@@ -2,6 +2,12 @@
    Task Formular
 =================================== */
 
+:root {
+    --task-form-submit-button-text: rgba(255,255,255,1);
+    --task-form-submit-button-bg: rgba(0,0,255,1);
+    --task-form-submit-button-bg-hover: rgba(0, 62, 128, 1);
+}
+
 .task-form {
     display: flex;
     flex-direction: column;
@@ -10,27 +16,27 @@
     width: 100%;  
 }
 
-.task-form-headline {
+.task-form__headline {
     display: flex;
     justify-content: center;
 }
 
-.task-form-group {
+.task-form__group {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.task-form-label {
+.task-form__label {
     font-weight: bold;
 }
 
-.task-form-input {
+.task-form__input {
     padding: 10px;
     font-size: 1rem;
 }
 
-.task-form-textarea {
+.task-form__textarea {
     padding: 10px;
     font-size: 1rem;
     resize: vertical;
@@ -39,21 +45,21 @@
 
 /*--- Submit Button ---*/
 
-.form-button {
+.task-form__submit-button {
     padding: 12px;
     font-size: 1rem;
     font-weight: bold;
-    color: rgba(255,255,255,1);
-    background-color: rgba(0,0,255,1);
+    color: var(--task-form-submit-button-text);
+    background-color: var(--task-form-submit-button-bg);
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.1s;
 }
 
-.form-button:hover {
-    background-color: rgba(0, 62, 128, 1); 
+.task-form__submit-button:hover {
+    background-color: var(--task-form-submit-button-bg-hover); 
 }
 
-.form-button.active {
+.task-form__submit-button.active {
     transform: scale(0.99);
 }

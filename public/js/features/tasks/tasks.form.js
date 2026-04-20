@@ -28,7 +28,7 @@ export function createTaskForm(){
 
         const taskFormHeadline = dom.create({
             tagName: 'h2',
-            classList: ['task-form-headline'],
+            classList: ['task-form__headline'],
             parent: taskFormHeaderContainer
         });
 
@@ -41,13 +41,13 @@ export function createTaskForm(){
         // --- Titel ---
         const taskFormGroup1 = dom.create({
             tagName: 'div',
-            classList: ['task-form-group'],
+            classList: ['task-form__group'],
             parent: taskForm
         });
 
         dom.create({
             tagName: 'label',
-            classList: ['task-form-label'],
+            classList: ['task-form__label'],
             innerText: 'Titel *',
             htmlFor: 'taskTitle',
             parent: taskFormGroup1
@@ -55,7 +55,7 @@ export function createTaskForm(){
 
         dom.create({
             tagName: 'input',
-            classList: ['task-form-input'],
+            classList: ['task-form__input'],
             type: 'text',
             id: 'taskTitle',
             name: 'title',
@@ -66,13 +66,13 @@ export function createTaskForm(){
         // --- Mitarbeiter ---
         const taskFormGroup2 = dom.create({
             tagName: 'div',
-            classList: ['task-form-group'],
+            classList: ['task-form__group'],
             parent: taskForm
         });
 
         dom.create({
             tagName: 'label',
-            classList: ['task-form-label'],
+            classList: ['task-form__label'],
             innerText: 'Mitarbeiter *',
             htmlFor: 'taskEmployee',
             parent: taskFormGroup2
@@ -80,7 +80,7 @@ export function createTaskForm(){
 
         dom.create({
             tagName: 'input',
-            classList: ['task-form-input'],
+            classList: ['task-form__input'],
             type: 'text',
             id: 'taskEmployee',
             name: 'employee',
@@ -91,13 +91,13 @@ export function createTaskForm(){
         // --- Startdatum ---
         const taskFormGroup3 = dom.create({
             tagName: 'div',
-            classList: ['task-form-group'],
+            classList: ['task-form__group'],
             parent: taskForm
         });
 
         dom.create({
             tagName: 'label',
-            classList: ['task-form-label'],
+            classList: ['task-form__label'],
             innerText: 'Startdatum *',
             htmlFor: 'taskStart',
             parent: taskFormGroup3
@@ -105,7 +105,7 @@ export function createTaskForm(){
 
         dom.create({
             tagName: 'input',
-            classList: ['task-form-input'],
+            classList: ['task-form__input'],
             type: 'date',
             id: 'taskStart',
             name: 'startDate',
@@ -116,13 +116,13 @@ export function createTaskForm(){
         // --- Enddatum ---
         const taskFormGroup4 = dom.create({
             tagName: 'div',
-            classList: ['task-form-group'],
+            classList: ['task-form__group'],
             parent: taskForm
         });
 
         dom.create({
             tagName: 'label',
-            classList: ['task-form-label'],
+            classList: ['task-form__label'],
             innerText: 'Enddatum *',
             htmlFor: 'taskEnd',
             parent: taskFormGroup4
@@ -130,7 +130,7 @@ export function createTaskForm(){
 
         dom.create({
             tagName: 'input',
-            classList: ['task-form-input'],
+            classList: ['task-form__input'],
             type: 'date',
             id: 'taskEnd',
             name: 'endDate',
@@ -141,13 +141,13 @@ export function createTaskForm(){
         // --- Beschreibung ---
         const taskFormGroup5 = dom.create({
             tagName: 'div',
-            classList: ['task-form-group'],
+            classList: ['task-form__group'],
             parent: taskForm
         });
 
         dom.create({
             tagName: 'label',
-            classList: ['task-form-label'],
+            classList: ['task-form__label'],
             innerText: 'Beschreibung',
             htmlFor: 'taskDescription',
             parent: taskFormGroup5
@@ -155,7 +155,7 @@ export function createTaskForm(){
 
         dom.create({
             tagName: 'textarea',
-            classList: ['task-form-textarea'],
+            classList: ['task-form__textarea'],
             id: 'taskDescription',
             name: 'description',
             parent: taskFormGroup5
@@ -164,7 +164,7 @@ export function createTaskForm(){
         // --- Submit Button ---
         const formSubmitButton = dom.create({
             tagName: 'button',
-            classList: ['form-button'],
+            classList: ['task-form__submit-button'],
             type: 'submit',
             parent: taskForm
         });
