@@ -41,7 +41,7 @@ export function showToast(message, type = 'info', duration=3000){
     toast.offsetHeight; 
     
     // Einblendanimation
-    toast.classList.add('show');
+    toast.classList.add('toast--show');
 
     setTimeout(() => {
         // Ausblendanimation
