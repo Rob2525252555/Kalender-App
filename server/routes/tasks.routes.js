@@ -1,8 +1,7 @@
 import express from 'express';
 import fs from 'fs';
 import crypto from 'crypto';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { DATA_TASKS_PATH } from '../config/paths.js';
 
 /**
  * @module tasks.router
@@ -15,11 +14,6 @@ import { fileURLToPath } from 'url';
  */
 
 const router = express.Router();
-
-// --- Pfad zur JSON-Datei ermitteln ---
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const DATA_TASKS_PATH = path.join(__dirname, '../../data/tasks.json');
 
 /**
  * GET /api/tasks

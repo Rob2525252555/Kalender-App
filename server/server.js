@@ -1,16 +1,9 @@
 import express from 'express';
 import path from 'path';
 import 'dotenv/config';
-import { fileURLToPath } from 'url';
 import { ensureDataFileExist } from './utils/ensureDataFiles.js';
 import router from './routes/tasks.routes.js';
-
-// --- Pfad zur JSON-Datei ermitteln ---
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const DATA_DIR = path.join(__dirname, '../data');
-const DATA_TASKS_PATH = path.join(DATA_DIR, 'tasks.json');
-
+import { DATA_DIR, DATA_TASKS_PATH } from './config/paths.js';
 
 // --- Sicherstellen, dass Ordner data und JSON-Datei tasks.json existieren ---
 await ensureDataFileExist(DATA_DIR, DATA_TASKS_PATH);
