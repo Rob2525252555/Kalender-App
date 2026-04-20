@@ -1,38 +1,48 @@
 /* ===================================
    Tasks
 =================================== */
+:root{
+  --task-bg: rgba(255, 243, 176, 1);                   /* Hellgelb für Tasks */
+  --task-bg-hover: rgba(248, 216, 75, 1);              /* Intensiveres Gelb beim Hover */
+  --task-box-shadow: rgba(0, 0, 0, 0.1);               /* Schatten für Tasks */
+  --task-box-shadow-hover: rgba(0, 0, 0, 0.2);         /* Hover-Schatten für Tasks */
+  --task-employee-font: rgba(85, 85, 85, 1);           /* Dunkelgrau für Mitarbeitertext */
+  --task-endDate-bg: rgba(255, 97, 97, 1);             /* Blasses Rot für Tasks am Enddatum */
+  --task-endDate-bg-hover: rgba(248, 29, 29,1);        /* Intensiveres Rot beim Hover */
+}
 
 /* Container für jede Task */
 .task {
-    background-color: var(--color-bg-tasks); 
+    background-color: var(--task-bg); 
     padding: 4px 6px;
     border-radius: 4px;
     display: flex;
-    flex-direction: column; /* Titel oben, Mitarbeiter unten */
+    flex-direction: column; /* Titel und Buttons oben, Mitarbeiter unten */
     gap: 4px;
-    box-shadow: 0 1px 3px var(--color-boxShadow-tasks);
+    box-shadow: 0 1px 3px var(--task-box-shadow);
 }
 
-.task:hover{
-    background-color: var(--color-bg-tasks-hover);
-    box-shadow: 0 3px 6px var(--color-boxShadow-tasks-hover); 
+.task:hover {
+    background-color: var(--task-bg-hover);
+    box-shadow: 0 3px 6px var(--task-box-shadow-hover); 
 }
 
-/* Für Task-Title und Buttons (Details, Bearbeiten, Löschen) */
-.taskHeader {
+/* Für Task-Titel und Buttons (Details, Bearbeiten, Löschen) */
+.task__header {
     display: flex;
     justify-content: space-between; /* Titel links, Buttons rechts */
     align-items: flex-start;
 }
 
-.taskButtons button {
+/* Container für die Buttons */
+.task__buttons button {
     margin-left: 4px; /* Abstand zwischen Buttons */
     padding: 2px 4px;
     font-size: 12px;
     cursor: pointer;
 }
 
-.taskTitle{
+.task__title {
     font-weight: bold;
     font-size: 14px;
 
@@ -40,7 +50,8 @@
     min-width: 0;
     max-width: 100%;
 
-    display: -webkit-box;
+    /* Titel geht nicht über Container hinaus, wird 2 Zeilen angezeigt */
+    display: -webkit-box; 
     -webkit-line-clamp: 2;
     line-clamp: 2;      
     -webkit-box-orient: vertical;  
@@ -50,16 +61,16 @@
     overflow: hidden;  
 }
 
-.taskEmployee{
-    color: var(--color-taskEmployee-font);
+.task__employee {
+    color: var(--task-employee-font);
     overflow-wrap: break-word;
 }
 
-.endDateTask{
-    background-color: var(--color-bg-endDateTask);
+.task__endDate {
+    background-color: var(--task-endDate-bg);
 }
 
-.endDateTask:hover{
-    background-color: var(--color-bg-endDateTask-hover);
-    box-shadow: 0 3px 6px var(--color-boxShadow-tasks-hover); 
+.task__endDate:hover {
+    background-color: var(--task-endDate-bg-hover);
+    box-shadow: 0 3px 6px var(--task-box-shadow-hover); 
 }

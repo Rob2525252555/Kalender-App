@@ -10,7 +10,7 @@ import elements from "../../core/elements.js"
  * - Mitarbeiter
  * - Buttons (Details, Bearbeiten, Löschen)
  * 
- * Beim Rendern am Enddatum wird die Klasse 'endDateTask' hinzugefügt,
+ * Beim Rendern am Enddatum wird die Klasse 'task__endDate' hinzugefügt,
  * für einen roten Hintergrund.
  * Nach dem Rendern wird die Referenz des Task-Containers und die zugehörige ID in elements.tasksElements gespeichert.
  * 
@@ -23,26 +23,26 @@ export function createTaskElement(task, parentCell, isEndDate = false) {
 
     const taskContainer = dom.create({
         tagName: 'div',
-        classList: isEndDate ? ['task', 'endDateTask'] : ['task'],
+        classList: isEndDate ? ['task', 'task__endDate'] : ['task'],
         parent: parentCell
     });
 
     const taskHeader = dom.create({
         tagName: 'div',
-        classList: ['taskHeader'],
+        classList: ['task__header'],
         parent: taskContainer
     });
 
     dom.create({
         tagName: 'div',
-        classList: ['taskEmployee'],
+        classList: ['task__employee'],
         innerText: task.employee,
         parent: taskContainer
     });
 
     dom.create({
         tagName: 'span',
-        classList: ['taskTitle'],
+        classList: ['task__title'],
         innerText: task.title,
         title: task.title,
         parent: taskHeader
@@ -50,7 +50,7 @@ export function createTaskElement(task, parentCell, isEndDate = false) {
 
     const taskButtonsContainer = dom.create({
         tagName: 'div',
-        classList: ['taskButtons'],
+        classList: ['task__buttons'],
         parent: taskHeader
     });
 
