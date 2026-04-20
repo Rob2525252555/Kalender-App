@@ -45,7 +45,7 @@ export function showToast(message, type = 'info', duration=3000){
 
     setTimeout(() => {
         // Ausblendanimation
-        toast.classList.remove('show');
+        toast.classList.remove('toast--show');
 
         // Nach Ende der Ausblendanimation wird Toast aus dem DOM entfernt
         toast.addEventListener('transitionend', () => {
