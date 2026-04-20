@@ -2,97 +2,101 @@
    Detailansicht
 =================================== */
 
-:root{
-    --color-button-bg: rgba(240, 240, 240, 1);
-    --color-edit-hover: rgba(180, 255, 180,1);
-    --color-delete-hover: rgba(255, 180, 180,1);
-    --color-back-hover: rgba(200, 200, 200, 1);
+:root {
+    /* Buttons */
+    --task-details-button-bg: rgba(240, 240, 240, 1);               /* Hellgrauer Hintergrund für Buttons der Detailansicht */
+    --task-details-button-edit-hover: rgba(180, 255, 180, 1);       /* Hellgrün bei Hover über Bearbeiten-Button */
+    --task-details-button-delete-hover: rgba(255, 180, 180, 1);     /* Helles Rot bei Hover über Löschen-Button */
+    --task-details-button-back-hover: rgba(200, 200, 200, 1);       /* Grau bei Hover über Zurück-Button */
 }
 
-    .task-details__container {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-    /* -----title----- */
-    .task-details__title {
-        font-family: 'Open Sans', sans-serif;
-    }
+.task-details__container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
-    .task-details__title-value {
-        overflow-wrap: break-word;
-    }
-    /* -----employee----- */
-    .task-details__employee {
-        font-size: 1.2rem;
-        font-style: oblique;
-    }
+/* ----- Titel ----- */
+.task-details__title {
+    font-family: 'Open Sans', sans-serif;
+}
 
-    .task-details__employee-label {
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
+.task-details__title-value {
+    overflow-wrap: break-word;
+}
 
-    .task-details__employee-value {
-        overflow-wrap: break-word;
-    }
+/* ----- Mitarbeiter ----- */
+.task-details__employee {
+    font-size: 1.2rem;
+    font-style: oblique;
+}
 
-    /* -----startDate----- */
-    .task-details__startDate-label {
-        font-weight: bold;
-    }
+.task-details__employee-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
 
-    .task-details__startDate-value {
-        overflow-wrap: break-word;
-    }
+.task-details__employee-value {
+    overflow-wrap: break-word;
+}
 
-    /* -----endDate----- */
-    .task-details__endDate-label {
-        font-weight: bold;
-    }
+/* ----- Startdatum ----- */
+.task-details__startDate-label {
+    font-weight: bold;
+}
 
-    .task-details__endDate-value {
-        overflow-wrap: break-word;
-    }
-    /* -----description----- */
-    .task-details__description {
-        font-weight:bold;
-        font-size: 1.2rem;
-    }
+.task-details__startDate-value {
+    overflow-wrap: break-word;
+}
 
-    .task-details__description-text {
-        line-height: 1.4;
-        overflow-wrap: break-word;
-    }
+/* ----- Enddatum ----- */
+.task-details__endDate-label {
+    font-weight: bold;
+}
 
-    /* ----- Buttons ----- */
+.task-details__endDate-value {
+    overflow-wrap: break-word;
+}
 
-    .task-details__button-container {
-        display: flex;
-        gap: 10px;
-    }
+/* ----- Beschreibung ----- */
+.task-details__description {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
 
-    .task-details__button{
-        padding: 6px 12px;
-        font-weight: bold;
-        font-size: 1rem;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background 0.2s, color 0.2s, transform 0.2s ;
-        background-color: var(--color-button-bg);
-    }
+.task-details__description-text {
+    line-height: 1.4;
+    overflow-wrap: break-word;
+}
 
-    .task-details__button--edit:hover {
-        background-color: var(--color-edit-hover);
-    }
+/* ----- Buttons ----- */
 
-    .task-details__button--delete:hover {
-        background-color: var(--color-delete-hover);
-    }
+.task-details__button-container {
+    display: flex;
+    gap: 10px;
+}
 
-    .task-details__button--back:hover {
-        background-color: var(--color-back-hover);
-    }
+.task-details__button {
+    padding: 6px 12px;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+    background-color: var(--task-details-button-bg);
+}
+
+.task-details__button--edit:hover {
+    background-color: var(--task-details-button-edit-hover);
+}
+
+.task-details__button--delete:hover {
+    background-color: var(--task-details-button-delete-hover);
+}
+
+.task-details__button--back:hover {
+    background-color: var(--task-details-button-back-hover);
+}
