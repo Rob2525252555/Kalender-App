@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { checkValidJson, JsonParseError } from './checkValidJson.js';
 
 /**
  * @module ensureDataFileExist
@@ -46,10 +47,10 @@ export async function ensureDataFileExist(dataDir, dataFilePath) {
          */
         try {
             // Prüft ob Daten JSON-Daten sind.
-            JSON.parse(data);
+            checkValidJson(data);
         } catch (err) {
-
-            if (!(err instanceof SyntaxError)) {
+         
+            if (!(err instanceof JsonParseError)) {
                 throw err;
             }
 
