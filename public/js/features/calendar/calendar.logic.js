@@ -1,21 +1,21 @@
 import elements from "../../core/elements.js";
 import dates from "../../utils/dates.js";
 
-    /**
-     * @module calendar.logic
-     * Enthält die Logik um den ausgewählten Monat zu rendern.
-     * 
-     * Aufgaben dieses Moduls:
-     * - Kalender wird zurückgesetzt (alte Klassen und Tageszahlen werden entfernt)
-     * - Header mit aktuellem Monat und Jahr aktualisieren
-     * - Zellen von letztem und nächstem Monat grau eingefärben
-     * - Die Tageszahlen werden in die Zellen des aktuellen Monats eingetragen
-     * - Den aktuellen Tag markieren
-     * - Die Zellen des letzten, nächsten und aktuellen Monats werden in elements.js gespeichert
-     */
+/**
+ * @module calendar.logic
+ * Enthält die Logik um den ausgewählten Monat zu rendern.
+ * 
+ * Aufgaben dieses Moduls:
+ * - Kalender wird zurückgesetzt (alte Klassen und Tageszahlen werden entfernt)
+ * - Header mit aktuellem Monat und Jahr aktualisieren
+ * - Zellen von letztem und nächstem Monat grau eingefärben
+ * - Die Tageszahlen werden in die Zellen des aktuellen Monats eingetragen
+ * - Den aktuellen Tag markieren
+ * - Die Zellen des letzten, nächsten und aktuellen Monats werden in elements.js gespeichert
+ */
 
 const calendarLogic = {
-    
+
     /**
      * Rendert den ausgewählten Monat.
      * 
@@ -26,13 +26,13 @@ const calendarLogic = {
      * @param {number} year - Ausgewähltes Jahr
      * @param {number} month - Ausgewählter Monat (0-11)
      */
-    renderThisMonth(year, month){
+    renderThisMonth(year, month) {
 
         calendarLogic.resetCalendar();
 
-        calendarLogic.updateHeader(year,month);
+        calendarLogic.updateHeader(year, month);
 
-        calendarLogic.setupCalendarCells(year, month);  
+        calendarLogic.setupCalendarCells(year, month);
     },
 
     /**
@@ -41,7 +41,7 @@ const calendarLogic = {
      * - entfernt Markierung für aktuellen Tag ('calendar__current-day')
      * - entfernt Tageszahlen aus allen Zellen
      */
-    resetCalendar(){
+    resetCalendar() {
         // Klassen aus allen Kalenderzellen entfernen
         for (let cell of elements.calendarCells) {
             cell.classList.remove('calendar__grey-cell', 'calendar__current-day');
@@ -58,7 +58,7 @@ const calendarLogic = {
      * @param {number} year - Ausgewähltes Jahr
      * @param {number} month - Ausgewählter Monat (0-11)
      */
-    updateHeader(year,month){
+    updateHeader(year, month) {
         elements.currentMonthAndYear.innerText = `${dates.months[month]} ${year}`;
     },
 
@@ -69,12 +69,13 @@ const calendarLogic = {
      * - Zellen des letzten und nächsten Monats grau einzufärben
      * - Tageszahlen in Zellen des aktuellen Monats einfügen
      * - aktueller Tag markieren
-     * - Zellen des letzten, nächsten und aktuellen Monats in elements.js speichern
+     * - Zellen des letzten, nächsten und ausgewählten Monats in elements.js speichern
+     * - Zellen des ausgewählten Monats das zugehörige Datum als Dataset-Attribut geben
      * 
      * @param {number} year - Ausgewähltes Jahr
      * @param {number} month - Ausgewählter Monat (0-11)
      */
-    setupCalendarCells(year,month){
+    setupCalendarCells(year, month) {
         // aktuelle Datumsinformationen ermitteln
         const today = dates.getDate();
 
@@ -83,23 +84,31 @@ const calendarLogic = {
         let greyCellsNextMonth = [];
         let cellsThisMonth = [];
 
-        let numGreyCellsLastMonth = dates.getNumGreyCellsLastMonth(year, month); 
-        let numDaysThisMonth = dates.getDaysThisMonth(year,month);
+        let numGreyCellsLastMonth = dates.getNumGreyCellsLastMonth(year, month);
+        let numDaysThisMonth = dates.getDaysThisMonth(year, month);
         let allCalendarCells = elements.calendarCells;
         let dayNumberCells = elements.dayNumberContainer;
 
         // Kalenderzellen des letzten Monats speichern und grau färben
         for (let i = 0; i < numGreyCellsLastMonth; i++) {
             greyCellsLastMonth.push(allCalendarCells[i]);
-            allCalendarCells[i].classList.add('calendar__grey-cell');  
+            allCalendarCells[i].classList.add('calendar__grey-cell');
         }
 
         // Kalenderzellen dieses Monats speichern und Tageszahlen eintragen
-        for (let i = numGreyCellsLastMonth; i < (numGreyCellsLastMonth + numDaysThisMonth); i++) {   
-            cellsThisMonth.push(allCalendarCells[i]);
-            dayNumberCells[i].innerText = (i - numGreyCellsLastMonth + 1);
+        // Zugehöriges Datum als Dataset-Attribut in Iso Format hinzufügen
+        for (let i = numGreyCellsLastMonth; i < (numGreyCellsLastMonth + numDaysThisMonth); i++) {
+            const day = i - numGreyCellsLastMonth + 1;
+            const cell = allCalendarCells[i];
+
+            cellsThisMonth.push(cell);
+            dayNumberCells[i].innerText = day;
+
+            // Zellen zugehöriges Datum als Dataset-Attribut geben
+            const isoDate = `${year}-${String(month + 1).padStart(2, 0)}-${String(day).padStart(2, 0)}`;
+            cell.dataset.date = isoDate; 
         }
-        
+
         // Kalenderzellen von nächstem Monat speichern und grau färben
         for (let i = numGreyCellsLastMonth + numDaysThisMonth; i < allCalendarCells.length; i++) {
             greyCellsNextMonth.push(allCalendarCells[i]);
@@ -110,7 +119,7 @@ const calendarLogic = {
         if (year === today.year && month === today.month) {
             const todayIndex = today.day - 1;
             cellsThisMonth[todayIndex].classList.add('calendar__current-day');
-        }           
+        }
 
         // Zellen des aktuellen, letzten und nächsten Monats in elements.js speichern
         elements.cellsThisMonth = cellsThisMonth;
