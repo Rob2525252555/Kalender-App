@@ -20,11 +20,6 @@ const elements = {
     // Container für die Tageszahlen in den Kalenderzellen
     dayNumberContainer: [],
 
-    // Kalenderzellen
-    cellsThisMonth: [],
-    greyCellsLastMonth: [],
-    greyCellsNextMonth: [],
-
     // Array um die Referenzen der gerenderten Aufgaben zu speichern
     tasksElements: [],
 
