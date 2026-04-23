@@ -96,8 +96,7 @@ const calendarLogic = {
             dayNumberCells[i].innerText = day;
 
             // Zellen zugehöriges Datum als Dataset-Attribut geben
-            const isoDate = `${year}-${String(month + 1).padStart(2, 0)}-${String(day).padStart(2, 0)}`;
-            cell.dataset.date = isoDate; 
+            cell.dataset.date = dates.toIsoDate(year, month, day);
         }
 
         // Kalenderzellen von nächstem Monat speichern und grau färben
