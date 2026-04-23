@@ -37,7 +37,7 @@ const tasksLogic = {
 
             const cell = document.querySelector(`[data-date="${task.startDate}"]`);
             if (cell) {
-                createTaskElement(task, cell, false);
+                createTaskElement(task, cell, 'taskStart');
             }
         }
 
@@ -45,7 +45,7 @@ const tasksLogic = {
 
             const cell = document.querySelector(`[data-date="${task.endDate}"]`);
             if (cell) {
-                createTaskElement(task, cell, true);
+                createTaskElement(task, cell, 'taskEnd');
             }
         }
     },
@@ -67,7 +67,7 @@ const tasksLogic = {
             const dayIndexStartDate = startDate.getDate() - 1;
 
             if (startDate.getFullYear() === selectedYear && startDate.getMonth() === selectedMonth) {
-                createTaskElement(task, elements.cellsThisMonth[dayIndexStartDate], false);
+                createTaskElement(task, elements.cellsThisMonth[dayIndexStartDate], 'taskStart');
             }
 
             // Task am Enddatum rendern
@@ -77,7 +77,7 @@ const tasksLogic = {
             const dayIndexEndDate = endDate.getDate() - 1;
 
             if (endDate.getFullYear() === selectedYear && endDate.getMonth() === selectedMonth) {
-                createTaskElement(task, elements.cellsThisMonth[dayIndexEndDate], true);
+                createTaskElement(task, elements.cellsThisMonth[dayIndexEndDate], 'taskEnd');
             }
         });
     }

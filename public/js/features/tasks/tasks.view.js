@@ -19,13 +19,20 @@ import elements from "../../core/elements.js"
  * @param {boolean} [isEndDate=false] - Gibt an, ob eine Task am Enddatum oder Startdatum gerendert wird
  */
 
-export function createTaskElement(task, parentCell, isEndDate = false) {
+export function createTaskElement(task, parentCell, type) {
 
     const taskContainer = dom.create({
         tagName: 'div',
-        classList: isEndDate ? ['task', 'task__endDate'] : ['task'],
         parent: parentCell
     });
+
+    if(type === 'taskStart'){
+        taskContainer.classList.add('task');
+    }
+
+    if(type === 'taskEnd'){
+        taskContainer.classList.add('task', 'task__endDate');
+    }
 
     const taskHeader = dom.create({
         tagName: 'div',
