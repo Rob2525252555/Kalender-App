@@ -17,28 +17,54 @@ const tasksLogic = {
      * Entfernt alle aktuell gerenderten Tasks.
      * Entfernt alle Referenzen aus elements.tasksElements.
      */
-   resetTasks(){        
-        elements.tasksElements.forEach(taskElement =>{
+    resetTasks() {
+        elements.tasksElements.forEach(taskElement => {
             taskElement.container.remove();
         })
-        elements.tasksElements.length = 0;    
+        elements.tasksElements.length = 0;
+    },
+    /**
+     * Rendert einzelne Task des aktuell ausgewählten Monats in ihre zugehörige Kalenderzelle.
+     */
+    renderSingleTask(task) {
+
+        const { selectedMonth, selectedYear } = state;
+
+        const startDate = new Date(task.startDate);
+        const endDate = new Date(task.endDate);
+
+        if (startDate.getFullYear() === selectedYear && startDate.getMonth() === selectedMonth) {
+
+            const cell = document.querySelector(`[data-date="${task.startDate}"]`);
+            if (cell) {
+                createTaskElement(task, cell, false);
+            }
+        }
+
+        if (endDate.getFullYear() === selectedYear && endDate.getMonth() === selectedMonth) {
+
+            const cell = document.querySelector(`[data-date="${task.endDate}"]`);
+            if (cell) {
+                createTaskElement(task, cell, true);
+            }
+        }
     },
     /**
      * Rendert Tasks des aktuell ausgewählten Monats in ihre zugehörige Kalenderzelle.
      */
-    renderTasks(){
+    renderTasks() {
 
         tasksLogic.resetTasks();
 
-        const {selectedMonth, selectedYear} = state;
-       
-        state.tasks.forEach(task =>{
+        const { selectedMonth, selectedYear } = state;
+
+        state.tasks.forEach(task => {
 
             // Task am Startdatum rendern
 
             const startDate = new Date(task.startDate);
             // Index anpassen, da cellsThisMonth bei 0 startet
-            const dayIndexStartDate = startDate.getDate()-1;
+            const dayIndexStartDate = startDate.getDate() - 1;
 
             if (startDate.getFullYear() === selectedYear && startDate.getMonth() === selectedMonth) {
                 createTaskElement(task, elements.cellsThisMonth[dayIndexStartDate], false);
@@ -48,13 +74,13 @@ const tasksLogic = {
 
             const endDate = new Date(task.endDate);
             // Index anpassen, da cellsThisMonth bei 0 startet
-            const dayIndexEndDate = endDate.getDate()-1;
+            const dayIndexEndDate = endDate.getDate() - 1;
 
-            if(endDate.getFullYear() === selectedYear && endDate.getMonth() === selectedMonth){
+            if (endDate.getFullYear() === selectedYear && endDate.getMonth() === selectedMonth) {
                 createTaskElement(task, elements.cellsThisMonth[dayIndexEndDate], true);
-            }                       
-        });       
+            }
+        });
     }
-} 
+}
 
 export default tasksLogic;
