@@ -56,29 +56,8 @@ const tasksLogic = {
 
         tasksLogic.resetTasks();
 
-        const { selectedMonth, selectedYear } = state;
-
         state.tasks.forEach(task => {
-
-            // Task am Startdatum rendern
-
-            const startDate = new Date(task.startDate);
-            // Index anpassen, da cellsThisMonth bei 0 startet
-            const dayIndexStartDate = startDate.getDate() - 1;
-
-            if (startDate.getFullYear() === selectedYear && startDate.getMonth() === selectedMonth) {
-                createTaskElement(task, elements.cellsThisMonth[dayIndexStartDate], 'taskStart');
-            }
-
-            // Task am Enddatum rendern
-
-            const endDate = new Date(task.endDate);
-            // Index anpassen, da cellsThisMonth bei 0 startet
-            const dayIndexEndDate = endDate.getDate() - 1;
-
-            if (endDate.getFullYear() === selectedYear && endDate.getMonth() === selectedMonth) {
-                createTaskElement(task, elements.cellsThisMonth[dayIndexEndDate], 'taskEnd');
-            }
+           tasksLogic.renderSingleTask(task);
         });
     }
 }
