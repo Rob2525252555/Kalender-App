@@ -115,6 +115,16 @@ const dates = {
      */
     getNumGreyCellsNextMonth(year, month) {
         return (42 - dates.getLastCalendarCell(year, month));
+    },
+    /**
+     * Ein Datum in ISO-8601-Format erstellen. 
+     * @param {number} year - Jahreszahl 
+     * @param {number} month - Monat (0-11)
+     * @param {number} day - Tag
+     * @returns {string} - Datum in ISO-8601-Format: "JJJJ-MM-TT"
+     */
+    toIsoDate(year, month, day){
+        return `${year}-${String(month+1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     }
 }
 
