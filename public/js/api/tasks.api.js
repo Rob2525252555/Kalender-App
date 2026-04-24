@@ -13,15 +13,15 @@ const BASE_URL = '/api/tasks';
  * - Bei Fehler leeres Array
  * @returns {Promise<Object[]>} - Promise, das Array von Task-Objekten auflöst
  */
-export async function fetchTasks(){
-    try{
+export async function fetchTasks() {
+    try {
         const res = await fetch(BASE_URL);
-        
-        if(!res.ok)throw new Error(`Fehler beim laden der Tasks ${res.status}`);
+
+        if (!res.ok) throw new Error(`Fehler beim laden der Tasks ${res.status}`);
         const data = await res.json();
-        
+
         return data;
-    }catch(err){
+    } catch (err) {
         console.error('Fehler beim laden der Tasks', err);
         return [];
     }
@@ -39,48 +39,48 @@ export async function fetchTasks(){
  * - Toast für Erfolgs- oder Fehlermeldung anzeigen
  * @param {SubmitEvent} e - Submit-Event des Formulars
  */
-export async function postTask(e){
+export async function postTask(e) {
     e.preventDefault();
-    
+
     const form = e.target;
 
     // Einträge aus Formular in Objekt umwandeln
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    if(new Date(data.startDate) > new Date(data.endDate)){
+    if (new Date(data.startDate) > new Date(data.endDate)) {
         showToast('Das Enddatum darf nicht vor dem Startdatum liegen', 'error');
         return;
     }
 
-    try{
+    try {
         const res = await fetch(BASE_URL, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)     
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
         });
 
         if (!res.ok) {
             const error = await res.json();
-            throw new Error(error.error);  
+            throw new Error(error.error);
         }
 
         const result = await res.json();
-        
+
         form.reset();
 
         state.tasks.push(result);
-        
+
         tasksLogic.renderTasks();
         modalEvents.closeModal();
-        
+
         showToast('Aufgabe erfolgreich erstellt', 'success');
     }
-    catch(err){
+    catch (err) {
         console.error('Fehler beim Speichern der Aufgabe: ', err);
         showToast('Fehler beim Erstellen der Aufgabe', 'error');
-        
-    }    
+
+    }
 }
 /**
  * Ändert eine vorhandene Task im Backend und aktualisiert die UI.
@@ -94,43 +94,43 @@ export async function postTask(e){
  * - Toast für Erfolgs- oder Fehlermeldung anzeigen
  * @param {SubmitEvent} e - Submit-Event des Formulars
  */
-export async function updateTask(e){
-    try{
-    e.preventDefault();
+export async function updateTask(e) {
+    try {
+        e.preventDefault();
 
-    const form = e.target;
-    
-    const formData =  new FormData(form);
-    const data = Object.fromEntries(formData.entries());
+        const form = e.target;
 
-    if(new Date(data.startDate) > new Date(data.endDate)){
-        showToast('Das Enddatum darf nicht vor dem Startdatum liegen', 'error');
-        return;
-    }
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
 
-    const taskID = form.dataset.id;
-    
-    const res = await fetch(`${BASE_URL}/${taskID}`, {
-        method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
-    });
+        if (new Date(data.startDate) > new Date(data.endDate)) {
+            showToast('Das Enddatum darf nicht vor dem Startdatum liegen', 'error');
+            return;
+        }
 
-    if (!res.ok){
-        const error = await res.json();
-        throw new Error(error.error);
-    }
+        const taskID = form.dataset.id;
 
-    const updatedTask = await res.json();
+        const res = await fetch(`${BASE_URL}/${taskID}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
 
-    // finde Task anhand der ID und ersetze sie 
-    state.tasks = state.tasks.map(task => task.id === taskID ? updatedTask: task);
+        if (!res.ok) {
+            const error = await res.json();
+            throw new Error(error.error);
+        }
 
-    tasksLogic.renderTasks();
+        const updatedTask = await res.json();
 
-    modalEvents.closeModal();
-    showToast('Aufgabe erfolgreich geändert', 'success');
-    }catch(err){
+        // finde Task anhand der ID und ersetze sie 
+        state.tasks = state.tasks.map(task => task.id === taskID ? updatedTask : task);
+
+        tasksLogic.renderTasks();
+
+        modalEvents.closeModal();
+        showToast('Aufgabe erfolgreich geändert', 'success');
+    } catch (err) {
         console.error('Fehler beim Ändern der Aufgabe: ', err);
         showToast('Fehler beim Ändern der Aufgabe', 'error');
     }
@@ -140,33 +140,29 @@ export async function updateTask(e){
  * Ablauf:
  * - Task wird im Backend gelöscht anhand der ID
  * - Task wird aus dem State gelöscht
- * - Task-Element Wird aus der UI gelöscht
- * - Referenz der Task wird aus elements.tasksElements entfernt
+ * - Task-Element Wird aus dem DOM gelöscht
  * - Toast für Erfolgs- oder Fehlermeldung anzeigen
  * @param {string} taskID - ID der Task, die gelöscht wird 
  */
-export async function deleteTask(taskID){
-    try{
-        const res = await fetch(`${BASE_URL}/${taskID}`, {method: 'DELETE'});
-        if(!res.ok){
+export async function deleteTask(taskID) {
+    try {
+        const res = await fetch(`${BASE_URL}/${taskID}`, { method: 'DELETE' });
+        if (!res.ok) {
             const error = await res.json();
             throw new Error(error.error || 'Task konnte im Backend nicht gelöscht werden');
         }
-        // aus State löschen    
-        state.tasks = state.tasks.filter(task => task.id !== taskID);
-        
-        // aus UI und Referenz löschen
-        const taskElementsToRemove = elements.tasksElements.filter(el => el.id === taskID);
-        
-        taskElementsToRemove.forEach(el => {
-            el.container.remove(); 
-        });
 
-        elements.tasksElements = elements.tasksElements.filter(el => el.id !== taskID);
+        // aus State entfernen    
+        state.tasks = state.tasks.filter(task => task.id !== taskID);
+
+        // aus DOM entfernen
+        const taskElementsToRemove = document.querySelectorAll(`[data-task-id = "${taskID}"]`);
+        taskElementsToRemove.forEach(el => el.remove());
+        
         showToast('Aufgabe erfolgreich gelöscht', 'success');
     }
-    catch(err){
+    catch (err) {
         console.error('Fehler beim Löschen der Aufgabe: ', err)
         showToast('Fehler beim Löschen der Aufgabe', 'error');
-    }  
+    }
 }
