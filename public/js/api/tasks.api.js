@@ -90,7 +90,8 @@ export async function postTask(e) {
  * - ID der zugehörigen Task aus dem Formular auslesen
  * - API-Call durchführen um Task im Backend zu ändern
  * - Aktualisierte Task vom Backend erhalten und den State damit aktualisieren
- * - Tasks neu rendern und Modal schließen
+ * - Task (Startdatum und Enddatum) aus dem DOM entfernen
+ * - Task neu rendern und Modal schließen
  * - Toast für Erfolgs- oder Fehlermeldung anzeigen
  * @param {SubmitEvent} e - Submit-Event des Formulars
  */
@@ -125,8 +126,11 @@ export async function updateTask(e) {
 
         // finde Task anhand der ID und ersetze sie 
         state.tasks = state.tasks.map(task => task.id === taskID ? updatedTask : task);
-
-        tasksLogic.renderTasks();
+        // Task aus DOM entfernen
+        const taskElementsToRemove = document.querySelectorAll(`[data-task-id = "${taskID}"]`);
+        taskElementsToRemove.forEach(el => el.remove());
+        
+        tasksLogic.renderSingleTask(updatedTask);
 
         modalEvents.closeModal();
         showToast('Aufgabe erfolgreich geändert', 'success');
