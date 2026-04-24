@@ -71,7 +71,7 @@ export async function postTask(e) {
 
         state.tasks.push(result);
 
-        tasksLogic.renderTasks();
+        tasksLogic.renderSingleTask(result);
         modalEvents.closeModal();
 
         showToast('Aufgabe erfolgreich erstellt', 'success');
