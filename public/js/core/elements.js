@@ -20,9 +20,6 @@ const elements = {
     // Container für die Tageszahlen in den Kalenderzellen
     dayNumberContainer: [],
 
-    // Array um die Referenzen der gerenderten Aufgaben zu speichern
-    tasksElements: [],
-
     // Overlay und Modal
     modalOverlay: null,
     overlayCloseButton: null,
