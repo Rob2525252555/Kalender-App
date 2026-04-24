@@ -23,14 +23,17 @@ export function createTaskElement(task, parentCell, type) {
 
     const taskContainer = dom.create({
         tagName: 'div',
+        dataset: {
+            taskId: task.id
+        },
         parent: parentCell
     });
 
-    if(type === 'taskStart'){
+    if (type === 'taskStart') {
         taskContainer.classList.add('task');
     }
 
-    if(type === 'taskEnd'){
+    if (type === 'taskEnd') {
         taskContainer.classList.add('task', 'task__endDate');
     }
 
