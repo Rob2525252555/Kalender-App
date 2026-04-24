@@ -15,13 +15,10 @@ import { createTaskElement } from "./tasks.view.js";
 const tasksLogic = {
     /**
      * Entfernt alle aktuell gerenderten Tasks.
-     * Entfernt alle Referenzen aus elements.tasksElements.
      */
     resetTasks() {
-        elements.tasksElements.forEach(taskElement => {
-            taskElement.container.remove();
-        })
-        elements.tasksElements.length = 0;
+        const allTasks = document.querySelectorAll('[data-task-id]');
+        allTasks.forEach(el => el.remove());
     },
     /**
      * Rendert einzelne Task des aktuell ausgewählten Monats in ihre zugehörige Kalenderzelle.
@@ -57,7 +54,7 @@ const tasksLogic = {
         tasksLogic.resetTasks();
 
         state.tasks.forEach(task => {
-           tasksLogic.renderSingleTask(task);
+            tasksLogic.renderSingleTask(task);
         });
     }
 }
