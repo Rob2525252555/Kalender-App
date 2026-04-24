@@ -12,7 +12,6 @@ import elements from "../../core/elements.js"
  * 
  * Beim Rendern am Enddatum wird die Klasse 'task__endDate' hinzugefügt,
  * für einen roten Hintergrund.
- * Nach dem Rendern wird die Referenz des Task-Containers und die zugehörige ID in elements.tasksElements gespeichert.
  * 
  * @param {Object} task - Task-Objekt aus dem State    
  * @param {HTMLElement} parentCell - Kalenderzelle, in die die Task gerendert werden soll
@@ -95,11 +94,5 @@ export function createTaskElement(task, parentCell, type) {
             action: 'deleteButton'
         },
         parent: taskButtonsContainer
-    });
-
-    // taskContainer mit zugehöriger ID und Buttons in elements speichern
-    elements.tasksElements.push({
-        id: task.id,
-        container: taskContainer,
     });
 };
