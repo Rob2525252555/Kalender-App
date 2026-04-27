@@ -19,6 +19,8 @@ const elements = {
     calendarCells: [],
     // Container für die Tageszahlen in den Kalenderzellen
     dayNumberContainer: [],
+    // Map für die Kalenderzellen des aktuellen Monats mit Datum als ISO-8601-String als Schlüssel
+    calendarCellMap: new Map(),
 
     // Overlay und Modal
     modalOverlay: null,
