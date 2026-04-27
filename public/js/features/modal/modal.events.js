@@ -26,6 +26,7 @@ const modalEvents = {
     openModal(){
         elements.modalOverlay.classList.add('modal--active');
         elements.modalContent.innerHTML = '';
+        elements.modalContent.append(elements.overlayCloseButton);
     },
     /**
      * Modal verbergen
