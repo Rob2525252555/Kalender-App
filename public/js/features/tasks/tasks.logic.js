@@ -32,7 +32,7 @@ const tasksLogic = {
 
         if (startDate.getFullYear() === selectedYear && startDate.getMonth() === selectedMonth) {
 
-            const cell = document.querySelector(`[data-date="${task.startDate}"]`);
+            const cell = elements.calendarCellMap.get(task.startDate);
             if (cell) {
                 createTaskElement(task, cell, 'taskStart');
             }
@@ -40,7 +40,7 @@ const tasksLogic = {
 
         if (endDate.getFullYear() === selectedYear && endDate.getMonth() === selectedMonth) {
 
-            const cell = document.querySelector(`[data-date="${task.endDate}"]`);
+            const cell = elements.calendarCellMap.get(task.endDate);
             if (cell) {
                 createTaskElement(task, cell, 'taskEnd');
             }
