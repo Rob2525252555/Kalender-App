@@ -117,7 +117,7 @@ const calendarLogic = {
         // Aktueller Tag markieren, nur wenn aktueller Monat angezeigt wird
         if (year === today.year && month === today.month) {
             const isoDate = dates.toIsoDate(year, month, today.day);
-            const cell = document.querySelector(`[data-date="${isoDate}"]`);
+            const cell = elements.calendarCellMap.get(isoDate);
             cell.classList.add('calendar__current-day');
         }
     }
