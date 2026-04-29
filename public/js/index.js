@@ -7,6 +7,7 @@ import tasksLogic from "./features/tasks/tasks.logic.js";
 import { createModal } from "./features/modal/modal.view.js";
 import modalEvents from "./features/modal/modal.events.js";
 import taskEvents from "./features/tasks/tasks.events.js";
+import footerEvents from "./features/footer/footer.events.js";
 
 /** 
  * Entry Point für die App 
@@ -30,6 +31,7 @@ const init = async () => {
         calendarEvents.init();
         modalEvents.init();
         taskEvents.init();
+        footerEvents.init();
          
     } catch (err) {
         console.error("Init fehlgeschlagen:", err);

@@ -218,7 +218,8 @@ export function renderCalendar() {
     elements.btnArrowRight = btnArrowRight;
     elements.currentMonthAndYear = currentMonthAndYear;
     elements.addTaskButton = addTaskButton;
-    elements.calendarMainContainer = calendarMainContainer;   
+    elements.calendarMainContainer = calendarMainContainer;
+    elements.footerContent = footerContent;   
 };
 
 

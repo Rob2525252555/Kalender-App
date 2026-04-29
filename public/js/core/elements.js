@@ -38,7 +38,10 @@ const elements = {
     taskDetailsViewBackButton: null,
 
     // Container für den Toast
-    toastContainer: null
+    toastContainer: null,
+
+    // Container für die Footer-Buttons
+    footerContent: null
 };
 
 export default elements;
