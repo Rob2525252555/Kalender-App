@@ -1,6 +1,7 @@
 import dom from "../../core/dom.js";
 import elements from "../../core/elements.js"
 import dates from "../../utils/dates.js";
+import { FOOTER_BUTTONS } from "../footer/footer.config.js";
 
 /**
  * @module calendar.view
@@ -36,9 +37,6 @@ export function renderCalendar() {
     const WEEKDAYSTEXT = [...dates.days.slice(1), dates.days[0]];
 
     const NUMBER_OF_ROWS = 6;
-
-    // Text der Footerlinks
-    const footerTexts = ['Impressum', 'Kontakt', 'Datenschutz'];
 
     // ----------------------------------------
     // Hauptcontainer
@@ -193,20 +191,23 @@ export function renderCalendar() {
     });
 
     /**Container für die Footerlinks */
-    const footerContainer = dom.create({
+    const footerContent = dom.create({
         tagName: 'div',
         classList: ['footer__container'],
         parent: footer
     });
 
     /**Erzeugen der Footerlinks */
-    for (let i = 0; i < footerTexts.length; i++) {
+    for (const btn of FOOTER_BUTTONS) {
 
         dom.create({
-            tagName: 'div',
-            innerText: footerTexts[i],
+            tagName: 'button',
+            innerText: btn.label,
             classList: ['footer__item'],
-            parent: footerContainer
+            dataset: {
+                action: btn.action
+            },
+            parent: footerContent
         });
     }
 
@@ -216,8 +217,8 @@ export function renderCalendar() {
     elements.btnArrowLeft = btnArrowLeft;
     elements.btnArrowRight = btnArrowRight;
     elements.currentMonthAndYear = currentMonthAndYear;
-    elements.calendarMainContainer = calendarMainContainer;
     elements.addTaskButton = addTaskButton;
+    elements.calendarMainContainer = calendarMainContainer;   
 };
 
 

@@ -3,7 +3,8 @@
 =================================== */
 :root {
     --footer: rgba(85, 85, 85, 1);                      /* Dunkelgrau für Footer-Hintergrund */
-    --footer-text: rgba(255, 255, 255, 1);              /* Weiß für Footer-Text */
+    --footer-text: rgba(255, 255, 255, 1);              /* Weiß für Text der Footer-Buttons */
+    --footer-text-hover: rgba(200, 200, 200, 1);        /* Hellgrau für Hover-Effekt für Text der Footer-Buttons */        
 }
 
 .footer {
@@ -21,7 +22,6 @@
     max-width: 400px;
     justify-content: space-between;
     align-items: center;
-    color: var(--footer-text);
     margin-left: 50px;
     margin-right: 50px;
 }
@@ -29,4 +29,13 @@
 /* Footer-Zellen*/
 .footer__item {
     padding: 0 10px;
+    background-color: var(--footer);
+    border: none;
+    color: var(--footer-text);
+    cursor: pointer; 
+}
+
+.footer__item:hover{
+    text-decoration: underline;
+    color: var(--footer-text-hover);
 }
