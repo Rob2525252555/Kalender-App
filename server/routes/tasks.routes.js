@@ -2,6 +2,7 @@ import express from 'express';
 import fs from 'fs';
 import crypto from 'crypto';
 import { DATA_TASKS_PATH } from '../config/paths.js';
+import { enqueueTaskOperation } from '../utils/enqueueWrite.js';
 
 /**
  * @module tasks.router
@@ -11,9 +12,13 @@ import { DATA_TASKS_PATH } from '../config/paths.js';
  * - POST /api/tasks (neue Task)
  * - PUT /api/tasks/:id (Task aktualisieren)
  * - DELETE /api/tasks/:id (Task löschen)
+ * - Bei (read->modify->write)-Operation (POST, PUT und DELETE) wird eine Queue verwendet,
+ *   um Race-Conditions zu verhindern
  */
 
 const router = express.Router();
+
+const ERR_TASK_NOT_FOUND = 'TASK_NOT_FOUND';
 
 /**
  * GET /api/tasks
@@ -62,6 +67,7 @@ router.get('/:id', async (req, res) => {
  * POST /api/tasks
  * Fügt eine neue Task hinzu
  * Body: {title, employee, startDate, endDate, description}
+ * Bei (read->modify->write)-Operation wird Queue verwendet
  * Antwort: Liefert das neue Task Objekt
  */
 router.post('/', async (req, res) => {
@@ -79,21 +85,25 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Startdatum darf nicht nach Enddatum liegen.' });
     }
 
-    const jsonData = await fs.promises.readFile(DATA_TASKS_PATH, 'utf-8');
-    const tasks = JSON.parse(jsonData);
+    const newTask = await enqueueTaskOperation(async () => {
+      const jsonData = await fs.promises.readFile(DATA_TASKS_PATH, 'utf-8');
+      const tasks = JSON.parse(jsonData);
 
-    const newTask = {
-      id: crypto.randomUUID(),
-      title,
-      employee,
-      startDate,
-      endDate,
-      description
-    };
+      const taskToAdd = {
+        id: crypto.randomUUID(),
+        title,
+        employee,
+        startDate,
+        endDate,
+        description
+      };
 
-    tasks.push(newTask);
+      tasks.push(taskToAdd);
 
-    await fs.promises.writeFile(DATA_TASKS_PATH, JSON.stringify(tasks, null, 2));
+      await fs.promises.writeFile(DATA_TASKS_PATH, JSON.stringify(tasks, null, 2));
+
+      return taskToAdd;
+    });
 
     res.status(201).json(newTask);
 
@@ -107,6 +117,7 @@ router.post('/', async (req, res) => {
  * PUT /api/tasks/:id
  * Aktualisiert eine bestehende Task
  * Body {title, employee, startDate, endDate, description}
+ * Bei (read->modify->write)-Operation wird Queue verwendet
  * Antwort: Liefert das veränderte Objekt
  */
 router.put('/:id', async (req, res) => {
@@ -123,31 +134,39 @@ router.put('/:id', async (req, res) => {
       return res.status(400).json({ error: 'Startdatum darf nicht nach Enddatum liegen.' });
     }
 
-    const jsonData = await fs.promises.readFile(DATA_TASKS_PATH, 'utf8');
-    const tasks = JSON.parse(jsonData);
+    const updatedTask = await enqueueTaskOperation(async () => {
+      const jsonData = await fs.promises.readFile(DATA_TASKS_PATH, 'utf8');
+      const tasks = JSON.parse(jsonData);
 
-    // Task anhand der ID finden
-    const index = tasks.findIndex(t => t.id === req.params.id);
+      // Task anhand der ID finden
+      const index = tasks.findIndex(t => t.id === req.params.id);
 
-    if (index === -1) {
+      if (index === -1) {
+        throw new Error(ERR_TASK_NOT_FOUND);
+      }
+
+      // Task aktualisieren
+      tasks[index] = {
+        ...tasks[index],
+        title,
+        employee,
+        startDate,
+        endDate,
+        description
+      };
+
+      await fs.promises.writeFile(DATA_TASKS_PATH, JSON.stringify(tasks, null, 2));
+
+      return tasks[index];
+    });
+
+    res.json(updatedTask);
+
+  } catch (err) {
+    if (err.message === ERR_TASK_NOT_FOUND) {
       return res.status(404).json({ error: 'Aufgabe nicht gefunden' });
     }
 
-    // Task aktualisieren
-    tasks[index] = {
-      ...tasks[index], 
-      title,
-      employee,
-      startDate,
-      endDate,
-      description
-    };
-
-    await fs.promises.writeFile(DATA_TASKS_PATH, JSON.stringify(tasks, null, 2));
-
-    res.json(tasks[index]);
-
-  } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Aufgabe konnte nicht aktualisiert werden' });
   }
@@ -156,37 +175,46 @@ router.put('/:id', async (req, res) => {
 /**
  * DELETE /api/tasks/:id
  * Löscht eine Task anhand der ID
+ * Bei (read->modify->write)-Operation wird Queue verwendet
  * Antwort: Liefert das gelöschte Objekt
  */
 router.delete('/:id', async (req, res) => {
   try {
-    
-    const jsonData = await fs.promises.readFile(DATA_TASKS_PATH, 'utf8');
-    const tasks = JSON.parse(jsonData);
 
-    const idToDelete = req.params.id;
+    const deletedTask = await enqueueTaskOperation(async () => {
+      const jsonData = await fs.promises.readFile(DATA_TASKS_PATH, 'utf8');
+      const tasks = JSON.parse(jsonData);
 
-    // Task, die gelöscht werden soll finden
-    const deletedTask = tasks.find(t => t.id === idToDelete);
+      const idToDelete = req.params.id;
 
-    if (!deletedTask) {
-      return res.status(404).json({ error: 'Aufgabe nicht gefunden' });
-    }
+      // Task, die gelöscht werden soll finden
+      const taskToDelete = tasks.find(task => task.id === idToDelete);
 
-    // Neues Array ohne die gelöschte Task
-    const updatedTasks = tasks.filter(t => t.id !== idToDelete);
+      if (!taskToDelete) {
+        throw new Error(ERR_TASK_NOT_FOUND);
+      }
 
-    await fs.promises.writeFile(DATA_TASKS_PATH, JSON.stringify(updatedTasks, null, 2));
+      // Neues Array ohne die gelöschte Task
+      const updatedTasks = tasks.filter(t => t.id !== idToDelete);
+
+      await fs.promises.writeFile(DATA_TASKS_PATH, JSON.stringify(updatedTasks, null, 2));
+      return taskToDelete;
+    });
+
 
     res.json({ status: 'ok', deletedTask });
 
   } catch (err) {
+    if (err.message === ERR_TASK_NOT_FOUND) {
+      return res.status(404).json({ error: 'Aufgabe nicht gefunden' });
+    }
+
     console.error(err);
     res.status(500).json({ error: 'Aufgabe konnte nicht gelöscht werden' });
   }
 });
 
 export default router;
-    
+
 
 
