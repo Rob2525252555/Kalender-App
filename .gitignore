@@ -2,8 +2,7 @@
 node_modules/
 
 #Alles im data-ordner ignorieren
-data/*
-!data/.gitkeep
+data/backup/
 
 # Environment
 .env
