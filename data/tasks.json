@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1da0eb37-45ac-45f2-a878-e35dd854d837",
+    "title": "API-Endpunkte erstellen",
+    "employee": "Max Mustermann",
+    "startDate": "2026-05-01",
+    "endDate": "2026-05-03",
+    "description": "Endpunkte für CRUD-Operationen erstellen, unter Verwendung des Express Frameworks"
+  },
+  {
+    "id": "f27eacca-9fb8-4f7f-bf79-39470ed462e3",
+    "title": "Kalender-Layout entwerfen",
+    "employee": "Anna Schneider",
+    "startDate": "2026-05-01",
+    "endDate": "2026-05-03",
+    "description": "Kalender-Layout mit HTML und CSS entwerfen"
+  },
+  {
+    "id": "4143c08d-e35c-40fa-be07-d005a2faed2c",
+    "title": "Mehrere Aufgaben in einer Kalenderzelle",
+    "employee": "Hans Otto",
+    "startDate": "2026-05-01",
+    "endDate": "2026-05-01",
+    "description": "Ziel dieser Aufgabe ist es zu zeigen, wie der Kalender aussieht, wenn mehrere Aufgaben in einer Zelle gerendert werden und Start und Ende der Aufgabe am gleichen Tag sind."
+  },
+  {
+    "id": "c363f10a-6a8b-4899-80e9-0c27c17773f0",
+    "title": "Demoaufgabe",
+    "employee": "Luis Feld",
+    "startDate": "2026-04-07",
+    "endDate": "2026-04-15",
+    "description": "Diese Aufgabe wurde zum Löschen oder zum Bearbeiten eingefügt, um das UI zu testen."
+  },
+  {
+    "id": "aac9c103-f29f-4224-8145-e188c49e4c80",
+    "title": "Langer Mitarbeitername",
+    "employee": "Marie-Luise-Anna-Hanna-Marion Müller",
+    "startDate": "2026-06-11",
+    "endDate": "2026-06-17",
+    "description": "Diese Aufgabe zeigt den Fall, das ein Mitarbeiter einen sehr langen Namen hat."
+  },
+  {
+    "id": "c6be1894-3862-4941-b8d6-269f6b574886",
+    "title": "EinSehrLangesWortDasÜberEineZeileHinausGeht",
+    "employee": "Sarah Müller",
+    "startDate": "2026-05-15",
+    "endDate": "2026-05-27",
+    "description": ""
+  },
+  {
+    "id": "205ef43f-3bf1-496f-acb0-d1103d8631ef",
+    "title": "Monatsgrenzen",
+    "employee": "Mona Hoffmann",
+    "startDate": "2026-05-06",
+    "endDate": "2026-07-07",
+    "description": ""
+  },
+  {
+    "id": "09e79c24-c6b6-4813-9068-e2f91f9b6ab9",
+    "title": "Noch mehr Aufgaben in der gleichen Zelle",
+    "employee": "Paul Hügel",
+    "startDate": "2026-05-01",
+    "endDate": "2026-05-03",
+    "description": "Für den Fall, dass sehr viele Aufgaben in der gleichen Zelle gerendert werden."
+  },
+  {
+    "id": "04f2b2e1-196b-40d2-94f4-a68a083a7d25",
+    "title": "Sehr viele Aufgaben in der gleichen Kalenderzelle",
+    "employee": "Mona Hoffmann",
+    "startDate": "2026-05-01",
+    "endDate": "2026-05-01",
+    "description": "Es wurden nun sehr viele Aufgaben in der gleichen Kalenderzelle gerendert."
+  },
+  {
+    "id": "28f8b1b4-1952-4f4d-8945-f9271f83d663",
+    "title": "Beschreibung ist optional",
+    "employee": "Sahra Schneider",
+    "startDate": "2026-04-12",
+    "endDate": "2026-04-18",
+    "description": ""
+  }
+]
