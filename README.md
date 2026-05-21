@@ -37,7 +37,7 @@ Eine webbasierte Full-Stack Kalenderanwendung zur Verwaltung von Aufgaben mit RE
 - Express.js
 - REST-API
 - Serverseitige Validierung von Eingabedaten
-- Schutz vor Race-Conditions durch Write-Queue
+- Schutz vor Race-Conditions durch serielle Write-Queue
 
 ### Datenspeicherung
 
@@ -92,10 +92,10 @@ server/
 - Node.js (v24 oder höher)
 
 ### Projekt herunterladen
-- git clone https://github.com/Rob2525252555/KalenderApp.git
+- git clone https://github.com/Rob2525252555/Kalender-App.git
 
 ### Installation
-- cd KalenderApp
+- cd Kalender-App
 - npm install
 
 ### Entwicklungsmodus
